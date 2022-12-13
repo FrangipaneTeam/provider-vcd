@@ -25,10 +25,21 @@ const (
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
 	errUnmarshalCredentials = "cannot unmarshal vcd credentials as JSON"
+
+	// Provider configuration keys
+	keyUser     = "user"
+	keyPassword = "password"
+	keyAuthType = "auth_type"
+	keyToken    = "token"
+	keyOrg      = "org"
+	keyURL      = "url"
+	keyVdc      = "vdc"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
 // returns Terraform provider setup configuration
+//
+//nolint:gocyclo
 func TerraformSetupBuilder(version, providerSource, providerVersion string) terraform.SetupFn {
 	return func(ctx context.Context, client client.Client, mg resource.Managed) (terraform.Setup, error) {
 		ps := terraform.Setup{
@@ -63,10 +74,25 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		}
 
 		// Set credentials in Terraform provider configuration.
-		/*ps.Configuration = map[string]any{
-			"username": creds["username"],
-			"password": creds["password"],
-		}*/
+		ps.Configuration = map[string]interface{}{
+			keyAuthType: pc.Spec.AuthType,
+			keyURL:      pc.Spec.URL,
+		}
+		if v, ok := creds[keyUser]; ok {
+			ps.Configuration[keyUser] = v
+		}
+		if v, ok := creds[keyPassword]; ok {
+			ps.Configuration[keyPassword] = v
+		}
+		if v, ok := creds[keyToken]; ok {
+			ps.Configuration[keyToken] = v
+		}
+		if v, ok := creds[keyOrg]; ok {
+			ps.Configuration[keyOrg] = v
+		}
+		if v, ok := creds[keyVdc]; ok {
+			ps.Configuration[keyVdc] = v
+		}
 		return ps, nil
 	}
 }

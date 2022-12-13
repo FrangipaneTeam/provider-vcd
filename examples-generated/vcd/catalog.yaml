@@ -1,0 +1,18 @@
+apiVersion: vcd.vcd.upbound.io/v1alpha1
+kind: Catalog
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vcd/v1alpha1/catalog
+  labels:
+    testing.upbound.io/example-name: myNewCatalog
+  name: mynewcatalog
+spec:
+  forProvider:
+    deleteForce: "true"
+    deleteRecursive: "true"
+    description: catalog for files
+    name: my-catalog
+    org: my-org
+
+---
+

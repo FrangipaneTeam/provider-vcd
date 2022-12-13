@@ -8,14 +8,9 @@ import (
 	// Note(turkenh): we are importing this to embed provider schema document
 	_ "embed"
 
+	"github.com/FrangipaneTeam/provider-vcd/config/catalog"
+	"github.com/FrangipaneTeam/provider-vcd/pkg/tools"
 	ujconfig "github.com/upbound/upjet/pkg/config"
-
-	"github.com/FrangipaneTeam/provider-vcd/config/null"
-)
-
-const (
-	resourcePrefix = "vcd"
-	modulePath     = "github.com/FrangipaneTeam/provider-vcd"
 )
 
 //go:embed schema.json
@@ -26,7 +21,7 @@ var providerMetadata string
 
 // GetProvider returns provider configuration
 func GetProvider() *ujconfig.Provider {
-	pc := ujconfig.NewProvider([]byte(providerSchema), resourcePrefix, modulePath, []byte(providerMetadata),
+	pc := ujconfig.NewProvider([]byte(providerSchema), tools.ResourcePrefix, tools.ModulePath, []byte(providerMetadata),
 		ujconfig.WithIncludeList(ExternalNameConfigured()),
 		ujconfig.WithDefaultResourceOptions(
 			ExternalNameConfigurations(),
@@ -34,7 +29,7 @@ func GetProvider() *ujconfig.Provider {
 
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
-		null.Configure,
+		catalog.Configure,
 	} {
 		configure(pc)
 	}
