@@ -1,12 +1,13 @@
 # Resources
 
-Last update: Mar 13 déc 2022 21:38:10 CET
+Last update: Mar 13 déc 2022 22:34:22 CET
 
-## Resources implemented: 7/75 (9.33%)
-###  (9.33%)
-#### Implemented (7/75)
+## Resources implemented: 8/75 (10.67%)
+###  (10.67%)
+#### Implemented (8/75)
 * [x] [vcd_catalog_media](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog_media)
 * [x] [vcd_edgegateway_settings](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/edgegateway_settings)
+* [x] [vcd_edgegateway_vpn](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/edgegateway_vpn)
 * [x] [vcd_edgegateway](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/edgegateway)
 * [x] [vcd_catalog_item](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog_item)
 * [x] [vcd_catalog](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog)
@@ -31,7 +32,6 @@ Last update: Mar 13 déc 2022 21:38:10 CET
 * [ ] [vcd_network_direct](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/network_direct)
 * [ ] [vcd_lb_app_rule](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/lb_app_rule)
 * [ ] [vcd_nsxv_firewall_rule](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxv_firewall_rule)
-* [ ] [vcd_edgegateway_vpn](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/edgegateway_vpn)
 * [ ] [vcd_lb_virtual_server](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/lb_virtual_server)
 * [ ] [vcd_nsxt_ip_set](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_ip_set)
 * [ ] [vcd_nsxt_alb_controller](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_alb_controller)

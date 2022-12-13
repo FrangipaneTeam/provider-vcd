@@ -21,8 +21,17 @@ type SettingsParameters struct {
 
 	// The edge gateway ID.
 	// ID of the edge gateway. Required when 'edge_gateway_name' is not set
+	// +crossplane:generate:reference:type=EdgeGateway
 	// +kubebuilder:validation:Optional
 	EdgeGatewayID *string `json:"edgeGatewayId,omitempty" tf:"edge_gateway_id,omitempty"`
+
+	// Reference to a EdgeGateway to populate edgeGatewayId.
+	// +kubebuilder:validation:Optional
+	EdgeGatewayIDRef *v1.Reference `json:"edgeGatewayIdRef,omitempty" tf:"-"`
+
+	// Selector for a EdgeGateway to populate edgeGatewayId.
+	// +kubebuilder:validation:Optional
+	EdgeGatewayIDSelector *v1.Selector `json:"edgeGatewayIdSelector,omitempty" tf:"-"`
 
 	// Default firewall rule (last in the processing order) action.
 	// One of accept or deny. Default deny.

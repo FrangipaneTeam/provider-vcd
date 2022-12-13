@@ -55,7 +55,8 @@ func ReplaceGroupWords(group string, count int) GroupKindCalculator {
 // ? "flexibleengine_networking_subnet_v2": ReplaceGroupWords("vpc", 0), => Output: Group: vpc, Kind: NetWorkingSubnet
 var GroupMap = map[string]GroupKindCalculator{
 	"vcd_edgegateway":          ReplaceGroupWords("egw", 0), // Group: egw, Kind: EdgeGateway
-	"vcd_edgegateway_settings": ReplaceGroupWords("egw", 1), // Group: egw, Kind: EdgeGatewaySettings
+	"vcd_edgegateway_settings": ReplaceGroupWords("egw", 1), // Group: egw, Kind: Settings
+	"vcd_edgegateway_vpn":      ReplaceGroupWords("egw", 1), // Group: egw, Kind: Vpn
 }
 
 // KindMap contains kind string overrides.

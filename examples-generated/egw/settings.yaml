@@ -8,7 +8,9 @@ metadata:
   name: egw-settings
 spec:
   forProvider:
-    edgeGatewayId: ${data.vcd_edgegateway.egw.id}
+    edgeGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_edgegateway
     fwDefaultRuleAction: accept
     fwDefaultRuleLoggingEnabled: true
     fwEnabled: true

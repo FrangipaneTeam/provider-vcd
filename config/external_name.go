@@ -19,6 +19,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 
 	"vcd_edgegateway":          config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .external_name }}"),
 	"vcd_edgegateway_settings": config.TemplatedStringAsIdentifier("edge_gateway_name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+	"vcd_edgegateway_vpn":      config.NameAsIdentifier,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

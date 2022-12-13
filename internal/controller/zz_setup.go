@@ -16,6 +16,7 @@ import (
 	vapptemplate "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/vapptemplate"
 	edgegateway "github.com/FrangipaneTeam/provider-vcd/internal/controller/egw/edgegateway"
 	settings "github.com/FrangipaneTeam/provider-vcd/internal/controller/egw/settings"
+	vpn "github.com/FrangipaneTeam/provider-vcd/internal/controller/egw/vpn"
 	certificate "github.com/FrangipaneTeam/provider-vcd/internal/controller/library/certificate"
 	providerconfig "github.com/FrangipaneTeam/provider-vcd/internal/controller/providerconfig"
 )
@@ -31,6 +32,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		vapptemplate.Setup,
 		edgegateway.Setup,
 		settings.Setup,
+		vpn.Setup,
 		certificate.Setup,
 		providerconfig.Setup,
 	} {
