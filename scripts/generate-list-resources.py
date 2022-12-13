@@ -51,13 +51,13 @@ for root, dirs, files in os.walk('.work/vmware/vcd/website/docs/r'):
                                     found = True
                                     countImplemented += 1
                                     linesImplementedPrint[group].append(
-                                        '* [x] [' + line[2:-1] + '](https://registry.terraform.io/providers/vmware/vcd/latest/website/docs/r/' + file[0:-3] + ')')
+                                        '* [x] [' + line[2:-1] + '](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/' + file[0:-3] + ')')
                                     break
 
                         if found == False:
                             countNotImplemented += 1
                             linesNotImplementedPrint[group].append(
-                                '* [ ] [' + line[2:-1] + '](https://registry.terraform.io/providers/vmware/vcd/latest/website/docs/r/' + file[0:-3] + ')')
+                                '* [ ] [' + line[2:-1] + '](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/' + file[0:-3] + ')')
                         break
 
 # If exist remove group Deprecated
