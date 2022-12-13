@@ -19,8 +19,8 @@ linesDeprecatedPrint = []
 
 for root, dirs, files in os.walk('.work/vmware/vcd/website/docs/r'):
     for file in files:
-        if file.endswith('.md'):
-            with open('.work/vmware/vcd/docs/resources/r/'+file) as f:
+        if file.endswith('.html.markdown'):
+            with open('.work/vmware/vcd/website/docs/r/'+file) as f:
                 for line in f:
                     if line.startswith('# vcd'):
 
@@ -46,19 +46,18 @@ for root, dirs, files in os.walk('.work/vmware/vcd/website/docs/r'):
                         found = False
                         with open('config/external_name.go') as x:
                             for l in x:
-
                                 # if line containe the resource name
                                 if l.find(line[2:-1]) != -1:
                                     found = True
                                     countImplemented += 1
                                     linesImplementedPrint[group].append(
-                                        '* [x] [' + line[2:-1] + '](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/' + file[0:-3] + ')')
+                                        '* [x] [' + line[2:-1] + '](https://registry.terraform.io/providers/vmware/vcd/latest/website/docs/r/' + file[0:-3] + ')')
                                     break
 
                         if found == False:
                             countNotImplemented += 1
                             linesNotImplementedPrint[group].append(
-                                '* [ ] [' + line[2:-1] + '](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/' + file[0:-3] + ')')
+                                '* [ ] [' + line[2:-1] + '](https://registry.terraform.io/providers/vmware/vcd/latest/website/docs/r/' + file[0:-3] + ')')
                         break
 
 # If exist remove group Deprecated
