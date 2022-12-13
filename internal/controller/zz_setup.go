@@ -9,16 +9,20 @@ import (
 
 	"github.com/upbound/upjet/pkg/controller"
 
+	accesscontrol "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/accesscontrol"
+	catalog "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/catalog"
+	item "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/item"
 	providerconfig "github.com/FrangipaneTeam/provider-vcd/internal/controller/providerconfig"
-	catalog "github.com/FrangipaneTeam/provider-vcd/internal/controller/vcd/catalog"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
 // the supplied manager.
 func Setup(mgr ctrl.Manager, o controller.Options) error {
 	for _, setup := range []func(ctrl.Manager, controller.Options) error{
-		providerconfig.Setup,
+		accesscontrol.Setup,
 		catalog.Setup,
+		item.Setup,
+		providerconfig.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err

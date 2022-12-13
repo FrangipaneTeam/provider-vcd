@@ -9,7 +9,9 @@ import "github.com/upbound/upjet/pkg/config"
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
-	"vcd_catalog": config.IdentifierFromProvider,
+	"vcd_catalog":                config.IdentifierFromProvider,
+	"vcd_catalog_access_control": config.IdentifierFromProvider,
+	"vcd_catalog_item":           config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

@@ -1,0 +1,25 @@
+apiVersion: catalog.vcd.upbound.io/v1alpha1
+kind: Item
+metadata:
+  annotations:
+    meta.upbound.io/example-id: catalog/v1alpha1/item
+  labels:
+    testing.upbound.io/example-name: myNewCatalogItem
+  name: mynewcatalogitem
+spec:
+  forProvider:
+    catalog: my-catalog
+    description: new vapp template
+    metadataEntry:
+    - key: license
+      value: public
+    - key: version
+      value: v1
+    name: my ova
+    org: my-org
+    ovaPath: /home/user/file.ova
+    showUploadProgress: true
+    uploadPieceSize: 10
+
+---
+

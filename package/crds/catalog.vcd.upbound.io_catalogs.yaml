@@ -5,9 +5,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: catalogs.vcd.vcd.upbound.io
+  name: catalogs.catalog.vcd.upbound.io
 spec:
-  group: vcd.vcd.upbound.io
+  group: catalog.vcd.upbound.io
   names:
     categories:
     - crossplane
