@@ -14,6 +14,9 @@ import (
 	item "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/item"
 	media "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/media"
 	vapptemplate "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/vapptemplate"
+	edgegateway "github.com/FrangipaneTeam/provider-vcd/internal/controller/egw/edgegateway"
+	settings "github.com/FrangipaneTeam/provider-vcd/internal/controller/egw/settings"
+	certificate "github.com/FrangipaneTeam/provider-vcd/internal/controller/library/certificate"
 	providerconfig "github.com/FrangipaneTeam/provider-vcd/internal/controller/providerconfig"
 )
 
@@ -26,6 +29,9 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		item.Setup,
 		media.Setup,
 		vapptemplate.Setup,
+		edgegateway.Setup,
+		settings.Setup,
+		certificate.Setup,
 		providerconfig.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {

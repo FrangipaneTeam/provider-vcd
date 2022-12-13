@@ -1,14 +1,17 @@
 # Resources
 
-Last update: Mar 13 déc 2022 17:35:53 CET
+Last update: Mar 13 déc 2022 21:38:10 CET
 
-## Resources implemented: 3/75 (4.0%)
-###  (4.0%)
-#### Implemented (3/75)
+## Resources implemented: 7/75 (9.33%)
+###  (9.33%)
+#### Implemented (7/75)
+* [x] [vcd_catalog_media](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog_media)
+* [x] [vcd_edgegateway_settings](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/edgegateway_settings)
+* [x] [vcd_edgegateway](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/edgegateway)
 * [x] [vcd_catalog_item](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog_item)
 * [x] [vcd_catalog](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog)
+* [x] [vcd_catalog_vapp_template](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog_vapp_template)
 * [x] [vcd_catalog_access_control](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog_access_control)
-* [ ] [vcd_catalog_media](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog_media)
 * [ ] [vcd_vm_affinity_rule](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vm_affinity_rule)
 * [ ] [vcd_global_role](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/global_role)
 * [ ] [vcd_nsxt_distributed_firewall](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_distributed_firewall)
@@ -16,7 +19,6 @@ Last update: Mar 13 déc 2022 17:35:53 CET
 * [ ] [vcd_org_group](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/org_group)
 * [ ] [vcd_vm_placement_policy](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vm_placement_policy)
 * [ ] [vcd_network_routed](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/network_routed)
-* [ ] [vcd_edgegateway_settings](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/edgegateway_settings)
 * [ ] [vcd_org_vdc_access_control](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/org_vdc_access_control)
 * [ ] [vcd_vapp_vm](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vapp_vm)
 * [ ] [vcd_vapp_nat_rules](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vapp_nat_rules)
@@ -41,7 +43,6 @@ Last update: Mar 13 déc 2022 17:35:53 CET
 * [ ] [vcd_vapp_access_control](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vapp_access_control)
 * [ ] [vcd_nsxt_ipsec_vpn_tunnel](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_ipsec_vpn_tunnel)
 * [ ] [vcd_nsxt_alb_edgegateway_service_engine_group](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_alb_edgegateway_service_engine_group)
-* [ ] [vcd_edgegateway](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/edgegateway)
 * [ ] [vcd_nsxt_security_group](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_security_group)
 * [ ] [vcd_nsxv_dhcp_relay](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxv_dhcp_relay)
 * [ ] [vcd_vapp_firewall_rules](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vapp_firewall_rules)
@@ -67,7 +68,6 @@ Last update: Mar 13 déc 2022 17:35:53 CET
 * [ ] [vcd_lb_app_profile](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/lb_app_profile)
 * [ ] [vcd_inserted_media](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/inserted_media)
 * [ ] [vcd_independent_disk](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/independent_disk)
-* [ ] [vcd_catalog_vapp_template](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog_vapp_template)
 * [ ] [vcd_vdc_group](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vdc_group)
 * [ ] [vcd_network_isolated](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/network_isolated)
 * [ ] [vcd_nsxt_edgegateway](https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_edgegateway)

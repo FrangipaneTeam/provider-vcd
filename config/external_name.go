@@ -14,6 +14,11 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"vcd_catalog_item":           TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.catalog }}.{{ .parameters.name }}"),
 	"vcd_catalog_media":          TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.catalog }}.{{ .parameters.name }}"),
 	"vcd_catalog_vapp_template":  TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.catalog }}.{{ .parameters.name }}"),
+
+	"vcd_library_certificate": config.TemplatedStringAsIdentifier("alias", "{{ .parameters.org }}.{{ .external_name }}"),
+
+	"vcd_edgegateway":          config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .external_name }}"),
+	"vcd_edgegateway_settings": config.TemplatedStringAsIdentifier("edge_gateway_name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

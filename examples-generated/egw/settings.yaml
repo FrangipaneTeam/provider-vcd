@@ -1,0 +1,21 @@
+apiVersion: egw.vcd.upbound.io/v1alpha1
+kind: Settings
+metadata:
+  annotations:
+    meta.upbound.io/example-id: egw/v1alpha1/settings
+  labels:
+    testing.upbound.io/example-name: egw-settings
+  name: egw-settings
+spec:
+  forProvider:
+    edgeGatewayId: ${data.vcd_edgegateway.egw.id}
+    fwDefaultRuleAction: accept
+    fwDefaultRuleLoggingEnabled: true
+    fwEnabled: true
+    lbAccelerationEnabled: true
+    lbEnabled: true
+    lbLoggingEnabled: true
+    lbLoglevel: debug
+
+---
+
