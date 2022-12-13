@@ -5,7 +5,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: accesscontrols.catalog.vcd.upbound.io
+  name: media.catalog.vcd.upbound.io
 spec:
   group: catalog.vcd.upbound.io
   names:
@@ -13,10 +13,10 @@ spec:
     - crossplane
     - managed
     - vcd
-    kind: AccessControl
-    listKind: AccessControlList
-    plural: accesscontrols
-    singular: accesscontrol
+    kind: Media
+    listKind: MediaList
+    plural: media
+    singular: media
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -35,8 +35,9 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: AccessControl is the Schema for the AccessControls API. Provides
-          a VMware Cloud Director Access Control structure for a Catalog.
+        description: Media is the Schema for the Medias API. Provides a VMware Cloud
+          Director media resource. This can be used to upload and delete media (ISO)
+          file inside a catalog.
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -51,7 +52,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: AccessControlSpec defines the desired state of AccessControl
+            description: MediaSpec defines the desired state of Media
             properties:
               deletionPolicy:
                 default: Delete
@@ -64,62 +65,82 @@ spec:
                 type: string
               forProvider:
                 properties:
-                  everyoneAccessLevel:
-                    description: Access level when the Catalog is shared with everyone
-                      (it can only be set to ReadOnly). Required if shared_with_everyone
-                      is set. Access level when the Catalog is shared with everyone
-                      (only ReadOnly is available). Required when shared_with_everyone
-                      is set
+                  catalog:
+                    description: The name of the catalog where to upload media file
+                      catalog name where upload the Media file
                     type: string
-                  org:
-                    description: The name of organization to which the Catalog belongs.
-                      Optional if defined at provider level. The name of organization
-                      to use, optional if defined at provider level. Useful when connected
-                      as sysadmin working across different organizations
+                  description:
+                    description: '- Description of media file'
                     type: string
-                  sharedWith:
-                    description: one or more blocks defining a subject (one of Organization,
-                      User, or Group) to which we are sharing. See shared_with below
-                      for detail. It cannot be used if shared_with_everyone is true.
+                  mediaPath:
+                    description: '- Absolute or relative path to file to upload absolute
+                      or relative path to Media file'
+                    type: string
+                  metadata:
+                    additionalProperties:
+                      type: string
+                    description: (Deprecated; v2.5+) Use metadata_entry instead. Key
+                      value map of metadata to assign Key and value pairs for catalog
+                      item metadata
+                    type: object
+                  metadataEntry:
+                    description: A set of metadata entries to assign. See Metadata
+                      section for details. Metadata entries for the given Catalog
+                      Media
                     items:
                       properties:
-                        accessLevel:
-                          description: The access level for the user or group to which
-                            we are sharing. (One of ReadOnly, Change, FullControl,
-                            but it can only be ReadOnly when we share to an Organization)
-                            The access level for the org, user, or group to which
-                            we are sharing. One of [ReadOnly, Change, FullControl]
-                            for users and groups, but just ReadOnly for Organizations
+                        isSystem:
+                          description: Domain for this metadata entry. true if it
+                            belongs to SYSTEM, false if it belongs to GENERAL. Domain
+                            for this metadata entry. true if it belongs to SYSTEM,
+                            false if it belongs to GENERAL
+                          type: boolean
+                        key:
+                          description: Key of this metadata entry. Key of this metadata
+                            entry. Required if the metadata entry is not empty
                           type: string
-                        groupId:
-                          description: The ID of a group with which we are sharing.
-                            Required if user_id or org_id is not set. ID of the group
-                            to which we are sharing. Required if user_id or org_id
-                            is not set
+                        type:
+                          description: 'Type of this metadata entry. One of: MetadataStringValue,
+                            MetadataNumberValue, MetadataDateTimeValue, MetadataBooleanValue.
+                            Type of this metadata entry. One of: ''MetadataStringValue'',
+                            ''MetadataNumberValue'', ''MetadataBooleanValue'', ''MetadataDateTimeValue'''
                           type: string
-                        orgId:
-                          description: The ID of a group with which we are sharing.
-                            Required if user_id or group_id is not set. ID of the
-                            Org to which we are sharing. Required if user_id or group_id
-                            is not set
+                        userAccess:
+                          description: 'User access level for this metadata entry.
+                            One of: PRIVATE (hidden), READONLY (read only), READWRITE
+                            (read/write). User access level for this metadata entry.
+                            One of: ''READWRITE'', ''READONLY'', ''PRIVATE'''
                           type: string
-                        userId:
-                          description: The ID of a user with which we are sharing.
-                            Required if group_id or org_id is not set. ID of the user
-                            to which we are sharing. Required if group_id or org_id
-                            is not set
+                        value:
+                          description: Value of this metadata entry. Value of this
+                            metadata entry. Required if the metadata entry is not
+                            empty
                           type: string
-                      required:
-                      - accessLevel
                       type: object
                     type: array
-                  sharedWithEveryone:
-                    description: Whether the Catalog is shared with everyone. If any
-                      shared_with blocks are included, this property must be set to
-                      false. Whether the Catalog is shared with everyone
+                  name:
+                    description: Media file name in catalog media name
+                    type: string
+                  org:
+                    description: The name of organization to use, optional if defined
+                      at provider level. Useful when connected as sysadmin working
+                      across different organisations The name of organization to use,
+                      optional if defined at provider level. Useful when connected
+                      as sysadmin working across different organizations
+                    type: string
+                  showUploadProgress:
+                    description: '- Default false. Allows to see upload progress.
+                      (See note below) shows upload progress in stdout'
                     type: boolean
+                  uploadPieceSize:
+                    description: '- size in MB for splitting upload size. It can possibly
+                      impact upload performance. Default 1MB. size of upload file
+                      piece size in mega bytes'
+                    type: number
                 required:
-                - sharedWithEveryone
+                - catalog
+                - mediaPath
+                - name
                 type: object
               providerConfigRef:
                 default:
@@ -293,25 +314,38 @@ spec:
             - forProvider
             type: object
           status:
-            description: AccessControlStatus defines the observed state of AccessControl.
+            description: MediaStatus defines the observed state of Media.
             properties:
               atProvider:
                 properties:
+                  creationDate:
+                    description: (Computed) returns creation date Creation date
+                    type: string
                   id:
                     type: string
-                  sharedWith:
-                    description: one or more blocks defining a subject (one of Organization,
-                      User, or Group) to which we are sharing. See shared_with below
-                      for detail. It cannot be used if shared_with_everyone is true.
-                    items:
-                      properties:
-                        subjectName:
-                          description: (Computed) the name of the subject (Org, group,
-                            or user) with which we are sharing. Name of the subject
-                            (org, group, or user) with which we are sharing
-                          type: string
-                      type: object
-                    type: array
+                  isIso:
+                    description: (Computed) returns True if this media file is ISO
+                      True if this media file is ISO
+                    type: boolean
+                  isPublished:
+                    description: (Computed) returns True if this media file is in
+                      a published catalog True if this media file is in a published
+                      catalog
+                    type: boolean
+                  ownerName:
+                    description: (Computed) returns owner name Owner name
+                    type: string
+                  size:
+                    description: (Computed) returns media storage in Bytes Media storage
+                      in Bytes
+                    type: number
+                  status:
+                    description: (Computed) returns media status Media status
+                    type: string
+                  storageProfileName:
+                    description: (Computed) returns storage profile name Storage profile
+                      name
+                    type: string
                 type: object
               conditions:
                 description: Conditions of the resource.

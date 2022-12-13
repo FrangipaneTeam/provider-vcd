@@ -33,3 +33,21 @@ func (l *ItemList) GetItems() []resource.Managed {
 	}
 	return items
 }
+
+// GetItems of this MediaList.
+func (l *MediaList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this VappTemplateList.
+func (l *VappTemplateList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}

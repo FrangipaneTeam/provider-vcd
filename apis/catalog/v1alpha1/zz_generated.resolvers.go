@@ -12,8 +12,8 @@ import (
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
-// ResolveReferences of this AccessControl.
-func (mg *AccessControl) ResolveReferences(ctx context.Context, c client.Reader) error {
+// ResolveReferences of this VappTemplate.
+func (mg *VappTemplate) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)
 
 	var rsp reference.ResolutionResponse

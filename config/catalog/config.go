@@ -27,4 +27,18 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("vcd_catalog_item", func(r *config.Resource) {
 
 	})
+
+	// vcd_catalog_media
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog_media
+	p.AddResourceConfigurator("vcd_catalog_media", func(r *config.Resource) {
+	})
+
+	// vcd_catalog_vapp_template
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog_vapp_template
+	p.AddResourceConfigurator("vcd_catalog_vapp_template", func(r *config.Resource) {
+		// catalog_id
+		r.References["catalog_id"] = config.Reference{
+			Type: "Catalog",
+		}
+	})
 }

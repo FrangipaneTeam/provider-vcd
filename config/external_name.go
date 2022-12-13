@@ -9,9 +9,11 @@ import "github.com/upbound/upjet/pkg/config"
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
-	"vcd_catalog":                config.IdentifierFromProvider,
-	"vcd_catalog_access_control": config.IdentifierFromProvider,
-	"vcd_catalog_item":           config.IdentifierFromProvider,
+	"vcd_catalog":                TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.name }}"),
+	"vcd_catalog_access_control": config.TemplatedStringAsIdentifier("catalog_id", "{{ .parameters.org }}.{{ .externam_name }}"),
+	"vcd_catalog_item":           TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.catalog }}.{{ .parameters.name }}"),
+	"vcd_catalog_media":          TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.catalog }}.{{ .parameters.name }}"),
+	"vcd_catalog_vapp_template":  TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.catalog }}.{{ .parameters.name }}"),
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the
@@ -36,4 +38,15 @@ func ExternalNameConfigured() []string {
 		i++
 	}
 	return l
+}
+
+// TemplatedStringAsIdentifierWithNoName uses TemplatedStringAsIdentifier but
+// without the name initializer. This allows it to be used in cases where the ID
+// is constructed with parameters and a provider-defined value, meaning no
+// user-defined input. Since the external name is not user-defined, the name
+// initializer has to be disabled.
+func TemplatedStringAsIdentifierWithNoName(tmpl string) config.ExternalName {
+	e := config.TemplatedStringAsIdentifier("", tmpl)
+	e.DisableNameInitializer = true
+	return e
 }

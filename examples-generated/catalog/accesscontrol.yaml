@@ -8,9 +8,6 @@ metadata:
   name: ac-not-shared
 spec:
   forProvider:
-    catalogIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: vcd_catalog
     sharedWithEveryone: false
 
 ---

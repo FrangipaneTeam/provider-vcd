@@ -12,6 +12,8 @@ import (
 	accesscontrol "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/accesscontrol"
 	catalog "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/catalog"
 	item "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/item"
+	media "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/media"
+	vapptemplate "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/vapptemplate"
 	providerconfig "github.com/FrangipaneTeam/provider-vcd/internal/controller/providerconfig"
 )
 
@@ -22,6 +24,8 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		accesscontrol.Setup,
 		catalog.Setup,
 		item.Setup,
+		media.Setup,
+		vapptemplate.Setup,
 		providerconfig.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {

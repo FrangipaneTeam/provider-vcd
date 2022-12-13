@@ -1,0 +1,33 @@
+apiVersion: catalog.vcd.upbound.io/v1alpha1
+kind: VappTemplate
+metadata:
+  annotations:
+    meta.upbound.io/example-id: catalog/v1alpha1/vapptemplate
+  labels:
+    testing.upbound.io/example-name: myNewVappTemplate
+  name: mynewvapptemplate
+spec:
+  forProvider:
+    catalogIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_catalog
+    description: new vapp template
+    metadataEntry:
+    - isSystem: "false"
+      key: license
+      type: MetadataStringValue
+      userAccess: READWRITE
+      value: public
+    - isSystem: "false"
+      key: version
+      type: MetadataStringValue
+      userAccess: READWRITE
+      value: v1
+    name: my ova
+    org: my-org
+    ovaPath: /home/user/file.ova
+    show_upload_progress: true
+    uploadPieceSize: 10
+
+---
+
