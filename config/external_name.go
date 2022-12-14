@@ -44,6 +44,8 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// vcd_org_vdc_access_control
 	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/org_vdc_access_control
 	"vcd_org_vdc_access_control": config.TemplatedStringAsIdentifier("vdc", "{{ .parameters.org }}.{{ .external_name }}"),
+
+	"vcd_network_direct": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

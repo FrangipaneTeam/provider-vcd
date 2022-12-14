@@ -13,6 +13,7 @@ import (
 	v1alpha1 "github.com/FrangipaneTeam/provider-vcd/apis/catalog/v1alpha1"
 	v1alpha1egw "github.com/FrangipaneTeam/provider-vcd/apis/egw/v1alpha1"
 	v1alpha1library "github.com/FrangipaneTeam/provider-vcd/apis/library/v1alpha1"
+	v1alpha1network "github.com/FrangipaneTeam/provider-vcd/apis/network/v1alpha1"
 	v1alpha1apis "github.com/FrangipaneTeam/provider-vcd/apis/v1alpha1"
 	v1beta1 "github.com/FrangipaneTeam/provider-vcd/apis/v1beta1"
 )
@@ -23,6 +24,7 @@ func init() {
 		v1alpha1.SchemeBuilder.AddToScheme,
 		v1alpha1egw.SchemeBuilder.AddToScheme,
 		v1alpha1library.SchemeBuilder.AddToScheme,
+		v1alpha1network.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
 	)

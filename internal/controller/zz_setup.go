@@ -18,6 +18,7 @@ import (
 	settings "github.com/FrangipaneTeam/provider-vcd/internal/controller/egw/settings"
 	vpn "github.com/FrangipaneTeam/provider-vcd/internal/controller/egw/vpn"
 	certificate "github.com/FrangipaneTeam/provider-vcd/internal/controller/library/certificate"
+	direct "github.com/FrangipaneTeam/provider-vcd/internal/controller/network/direct"
 	providerconfig "github.com/FrangipaneTeam/provider-vcd/internal/controller/providerconfig"
 )
 
@@ -34,6 +35,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		settings.Setup,
 		vpn.Setup,
 		certificate.Setup,
+		direct.Setup,
 		providerconfig.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {

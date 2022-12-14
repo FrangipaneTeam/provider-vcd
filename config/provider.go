@@ -11,6 +11,7 @@ import (
 	"github.com/FrangipaneTeam/provider-vcd/config/catalog"
 	"github.com/FrangipaneTeam/provider-vcd/config/egw"
 	"github.com/FrangipaneTeam/provider-vcd/config/library"
+	"github.com/FrangipaneTeam/provider-vcd/config/network"
 	"github.com/FrangipaneTeam/provider-vcd/pkg/tools"
 	ujconfig "github.com/upbound/upjet/pkg/config"
 )
@@ -36,6 +37,7 @@ func GetProvider() *ujconfig.Provider {
 		catalog.Configure,
 		egw.Configure,
 		library.Configure,
+		network.Configure,
 	} {
 		configure(pc)
 	}
