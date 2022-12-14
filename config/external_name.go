@@ -20,6 +20,30 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"vcd_edgegateway":          config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .external_name }}"),
 	"vcd_edgegateway_settings": config.TemplatedStringAsIdentifier("edge_gateway_name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
 	"vcd_edgegateway_vpn":      config.NameAsIdentifier,
+
+	// vcd_org
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/org
+	"vcd_org": config.NameAsIdentifier,
+
+	// vcd_org_group
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/org_group
+	"vcd_org_group": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .external_name }}"),
+
+	// vcd_org_ldap
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/org_ldap
+	"vcd_org_ldap": TemplatedStringAsIdentifierWithNoName("{{ .parameters.org_id }}"),
+
+	// vcd_org_user
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/org_user
+	"vcd_org_user": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .external_name }}"),
+
+	// vcd_org_vdc
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/org_vdc
+	"vcd_org_vdc": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .external_name }}"),
+
+	// vcd_org_vdc_access_control
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/org_vdc_access_control
+	"vcd_org_vdc_access_control": config.TemplatedStringAsIdentifier("vdc", "{{ .parameters.org }}.{{ .external_name }}"),
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the
