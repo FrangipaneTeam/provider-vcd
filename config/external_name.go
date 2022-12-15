@@ -4,7 +4,9 @@ Copyright 2022 Upbound Inc.
 */
 package config
 
-import "github.com/upbound/upjet/pkg/config"
+import (
+	"github.com/upbound/upjet/pkg/config"
+)
 
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
@@ -45,7 +47,37 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/org_vdc_access_control
 	"vcd_org_vdc_access_control": config.TemplatedStringAsIdentifier("vdc", "{{ .parameters.org }}.{{ .external_name }}"),
 
+	// vcd_network_direct
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/network_direct
 	"vcd_network_direct": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_network_isolated
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/network_isolated
+	"vcd_network_isolated": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_network_isolated_v2
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/network_isolated_v2
+	"vcd_network_isolated_v2": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_network_routed
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/network_routed
+	"vcd_network_routed": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_network_routed_v2
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/network_routed_v2
+	"vcd_network_routed_v2": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_external_network
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/external_network
+	"vcd_external_network": config.NameAsIdentifier,
+
+	// vcd_external_network_v2
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/external_network_v2
+	"vcd_external_network_v2": config.NameAsIdentifier,
+
+	// vcd_nsxt_edgegateway
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_edgegateway
+	"vcd_nsxt_edgegateway": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

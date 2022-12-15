@@ -1,0 +1,20 @@
+apiVersion: org.vcd.upbound.io/v1beta1
+kind: VdcAccessControl
+metadata:
+  annotations:
+    meta.upbound.io/example-id: org/v1beta1/vdcaccesscontrol
+  labels:
+    testing.upbound.io/example-name: my_access_control
+  name: my-access-control
+spec:
+  forProvider:
+    org: my-org
+    sharedWith:
+    - accessLevel: ReadOnly
+      userId: ${data.vcd_org_user.my-user.id}
+    - accessLevel: ReadOnly
+      userId: ${data.vcd_org_user.my-user2.id}
+    sharedWithEveryone: false
+
+---
+

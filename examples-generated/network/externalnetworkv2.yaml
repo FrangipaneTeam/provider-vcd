@@ -1,0 +1,31 @@
+apiVersion: network.vcd.upbound.io/v1beta1
+kind: ExternalNetworkV2
+metadata:
+  annotations:
+    meta.upbound.io/example-id: network/v1beta1/externalnetworkv2
+  labels:
+    testing.upbound.io/example-name: ext-net-nsxt-t0
+  name: ext-net-nsxt-t0
+spec:
+  forProvider:
+    description: First NSX-T Tier 0 router backed network
+    ipScope:
+    - enabled: false
+      gateway: 88.88.88.1
+      prefixLength: "24"
+      staticIpPool:
+      - endAddress: 88.88.88.100
+        startAddress: 88.88.88.88
+    - gateway: 14.14.14.1
+      prefixLength: "24"
+      staticIpPool:
+      - endAddress: 14.14.14.15
+        startAddress: 14.14.14.10
+      - endAddress: 14.14.14.25
+        startAddress: 14.14.14.20
+    nsxtNetwork:
+    - nsxtManagerId: ${data.vcd_nsxt_manager.main.id}
+      nsxtTier0RouterId: ${data.vcd_nsxt_tier0_router.router.id}
+
+---
+

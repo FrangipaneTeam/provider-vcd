@@ -1,0 +1,44 @@
+apiVersion: edgegateway.vcd.upbound.io/v1beta1
+kind: EdgeGateway
+metadata:
+  annotations:
+    meta.upbound.io/example-id: edgegateway/v1beta1/edgegateway
+  labels:
+    testing.upbound.io/example-name: egw
+  name: egw
+spec:
+  forProvider:
+    configuration: compact
+    description: new edge gateway
+    externalNetwork:
+    - name: my-ext-net1
+      subnet:
+      - gateway: 192.168.30.49
+        ipAddress: 192.168.30.51
+        netmask: 255.255.255.240
+        useForDefaultRoute: true
+    org: my-org
+    vdc: my-vdc
+
+---
+
+apiVersion: network.vcd.upbound.io/v1beta1
+kind: Routed
+metadata:
+  annotations:
+    meta.upbound.io/example-id: edgegateway/v1beta1/edgegateway
+  labels:
+    testing.upbound.io/example-name: rnet1
+  name: rnet1
+spec:
+  forProvider:
+    edgeGateway: my-egw
+    gateway: 192.168.2.1
+    org: my-org
+    staticIpPool:
+    - endAddress: 192.168.2.100
+      startAddress: 192.168.2.2
+    vdc: my-vdc
+
+---
+

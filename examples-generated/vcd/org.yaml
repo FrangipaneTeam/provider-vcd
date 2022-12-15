@@ -1,0 +1,26 @@
+apiVersion: vcd.vcd.upbound.io/v1beta1
+kind: Org
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vcd/v1beta1/org
+  labels:
+    testing.upbound.io/example-name: my-org
+  name: my-org
+spec:
+  forProvider:
+    deleteForce: "true"
+    deleteRecursive: "true"
+    description: The pride of my work
+    fullName: My organization
+    isEnabled: "true"
+    vappLease:
+    - deleteOnStorageLeaseExpiration: false
+      maximumRuntimeLeaseInSec: 3600
+      maximumStorageLeaseInSec: 0
+      powerOffOnRuntimeLeaseExpiration: true
+    vappTemplateLease:
+    - deleteOnStorageLeaseExpiration: true
+      maximumStorageLeaseInSec: 604800
+
+---
+

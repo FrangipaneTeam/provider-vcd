@@ -1,0 +1,23 @@
+apiVersion: network.vcd.upbound.io/v1beta1
+kind: Routed
+metadata:
+  annotations:
+    meta.upbound.io/example-id: network/v1beta1/routed
+  labels:
+    testing.upbound.io/example-name: net
+  name: net
+spec:
+  forProvider:
+    dhcpPool:
+    - endAddress: 10.10.0.100
+      startAddress: 10.10.0.2
+    edgeGateway: Edge Gateway Name
+    gateway: 10.10.0.1
+    org: my-org
+    staticIpPool:
+    - endAddress: 10.10.0.254
+      startAddress: 10.10.0.152
+    vdc: my-vdc
+
+---
+

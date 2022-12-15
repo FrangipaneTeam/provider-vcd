@@ -1,0 +1,16 @@
+apiVersion: org.vcd.upbound.io/v1beta1
+kind: Group
+metadata:
+  annotations:
+    meta.upbound.io/example-id: org/v1beta1/group
+  labels:
+    testing.upbound.io/example-name: org1
+  name: org1
+spec:
+  forProvider:
+    org: org1
+    providerType: SAML
+    role: Organization Administrator
+
+---
+

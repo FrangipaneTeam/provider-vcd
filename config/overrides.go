@@ -30,3 +30,9 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 		}
 	}
 }
+
+func defaultVersion() config.ResourceOption {
+	return func(r *config.Resource) {
+		r.Version = tools.Version
+	}
+}

@@ -1,0 +1,59 @@
+apiVersion: network.vcd.upbound.io/v1beta1
+kind: ExternalNetwork
+metadata:
+  annotations:
+    meta.upbound.io/example-id: network/v1beta1/externalnetwork
+  labels:
+    testing.upbound.io/example-name: net
+  name: net
+spec:
+  forProvider:
+    description: Reference for vCD external network
+    ipScope:
+    - dns1: 192.168.0.164
+      dns2: 192.168.0.196
+      dnsSuffix: mybiz.biz
+      gateway: 192.168.30.49
+      netmask: 255.255.255.240
+      staticIpPool:
+      - endAddress: 192.168.30.62
+        startAddress: 192.168.30.51
+    - dns1: 192.168.1.164
+      dns2: 192.168.1.196
+      dnsSuffix: my.biz
+      gateway: 192.168.31.49
+      netmask: 255.255.255.240
+      staticIpPool:
+      - endAddress: 192.168.31.55
+        startAddress: 192.168.31.51
+      - endAddress: 192.168.31.59
+        startAddress: 192.168.31.57
+    retainNetInfoAcrossDeployments: "false"
+    vsphereNetwork:
+    - name: myNetwork
+      type: DV_PORTGROUP
+      vcenter: vcenter-name
+    - name: myNetwork2
+      type: DV_PORTGROUP
+      vcenter: vcenter-name2
+
+---
+
+apiVersion: network.vcd.upbound.io/v1beta1
+kind: Direct
+metadata:
+  annotations:
+    meta.upbound.io/example-id: network/v1beta1/externalnetwork
+  labels:
+    testing.upbound.io/example-name: net
+  name: net
+spec:
+  forProvider:
+    externalNetworkSelector:
+      matchLabels:
+        testing.upbound.io/example-name: net
+    org: my-org
+    vdc: my-vdc
+
+---
+

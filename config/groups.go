@@ -55,9 +55,12 @@ func ReplaceGroupWords(group string, count int) GroupKindCalculator {
 // ? "flexibleengine_networking_subnet_v2": ReplaceGroupWords("vpc", 0), => Output: Group: vpc, Kind: NetWorkingSubnet
 var GroupMap = map[string]GroupKindCalculator{
 	// EGW
-	"vcd_edgegateway":          ReplaceGroupWords("egw", 0), // Group: egw, Kind: EdgeGateway
-	"vcd_edgegateway_settings": ReplaceGroupWords("egw", 1), // Group: egw, Kind: Settings
-	"vcd_edgegateway_vpn":      ReplaceGroupWords("egw", 1), // Group: egw, Kind: Vpn
+	"vcd_edgegateway": ReplaceGroupWords("edgegateway", 0), // Group: egw, Kind: EdgeGateway
+	// "vcd_edgegateway_settings": ReplaceGroupWords("egw", 1), // Group: egw, Kind: Settings
+	// "vcd_edgegateway_vpn":      ReplaceGroupWords("egw", 1), // Group: egw, Kind: Vpn
+
+	"vcd_external_network":    ReplaceGroupWords("network", 0), // Group: network, Kind: ExternalNetwork
+	"vcd_external_network_v2": ReplaceGroupWords("network", 0), // Group: network, Kind: ExternalNetworkV2
 
 }
 
@@ -68,4 +71,7 @@ var KindMap = map[string]string{
 
 	// ORG
 	"vcd_org": "Org",
+
+	// NSXT
+	"vcd_nsxt_edgegateway": "EdgeGateway",
 }

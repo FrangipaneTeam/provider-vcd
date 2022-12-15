@@ -1,0 +1,23 @@
+apiVersion: network.vcd.upbound.io/v1beta1
+kind: Isolated
+metadata:
+  annotations:
+    meta.upbound.io/example-id: network/v1beta1/isolated
+  labels:
+    testing.upbound.io/example-name: net
+  name: net
+spec:
+  forProvider:
+    dhcpPool:
+    - endAddress: 192.168.2.50
+      startAddress: 192.168.2.2
+    dns1: 192.168.2.1
+    gateway: 192.168.2.1
+    org: my-org
+    staticIpPool:
+    - endAddress: 192.168.2.100
+      startAddress: 192.168.2.51
+    vdc: my-vdc
+
+---
+

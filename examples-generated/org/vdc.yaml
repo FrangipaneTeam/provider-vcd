@@ -1,0 +1,39 @@
+apiVersion: org.vcd.upbound.io/v1beta1
+kind: Vdc
+metadata:
+  annotations:
+    meta.upbound.io/example-id: org/v1beta1/vdc
+  labels:
+    testing.upbound.io/example-name: my-vdc
+  name: my-vdc
+spec:
+  forProvider:
+    allocationModel: ReservationPool
+    computeCapacity:
+    - cpu:
+      - allocated: 2048
+      memory:
+      - allocated: 2048
+    deleteForce: true
+    deleteRecursive: true
+    description: The pride of my work
+    enableFastProvisioning: true
+    enableThinProvisioning: true
+    enabled: true
+    metadataEntry:
+    - key: role
+      value: customerName
+    - key: env
+      value: staging
+    - key: version
+      value: v1
+    networkPoolName: vDC1-VXLAN-NP
+    org: my-org
+    providerVdcName: vDC1
+    storageProfile:
+    - default: true
+      limit: 10240
+      name: storage-name
+
+---
+

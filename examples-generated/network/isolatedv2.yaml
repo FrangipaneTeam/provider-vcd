@@ -1,0 +1,23 @@
+apiVersion: network.vcd.upbound.io/v1beta1
+kind: IsolatedV2
+metadata:
+  annotations:
+    meta.upbound.io/example-id: network/v1beta1/isolatedv2
+  labels:
+    testing.upbound.io/example-name: nsxt-backed
+  name: nsxt-backed
+spec:
+  forProvider:
+    description: My isolated Org VDC network backed by NSX-T
+    gateway: 1.1.1.1
+    org: my-org
+    ownerId: ${data.vcd_org_vdc.main.id}
+    prefixLength: 24
+    staticIpPool:
+    - endAddress: 1.1.1.20
+      startAddress: 1.1.1.10
+    - endAddress: 1.1.1.103
+      startAddress: 1.1.1.100
+
+---
+

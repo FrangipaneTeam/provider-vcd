@@ -1,0 +1,395 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.8.0
+  creationTimestamp: null
+  name: edgegateways.nsxt.vcd.upbound.io
+spec:
+  group: nsxt.vcd.upbound.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - vcd
+    kind: EdgeGateway
+    listKind: EdgeGatewayList
+    plural: edgegateways
+    singular: edgegateway
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: EdgeGateway is the Schema for the EdgeGateways API. Provides
+          a VMware Cloud Director NSX-T edge gateway. This can be used to create,
+          update, and delete NSX-T edge gateways connected to external networks.
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: EdgeGatewaySpec defines the desired state of EdgeGateway
+            properties:
+              deletionPolicy:
+                default: Delete
+                description: DeletionPolicy specifies what will happen to the underlying
+                  external when this managed resource is deleted - either "Delete"
+                  or "Orphan" the external resource.
+                enum:
+                - Orphan
+                - Delete
+                type: string
+              forProvider:
+                properties:
+                  dedicateExternalNetwork:
+                    description: Dedicating the External Network will enable Route
+                      Advertisement for this Edge Gateway. Default false. Dedicating
+                      the External Network will enable Route Advertisement for this
+                      Edge Gateway.
+                    type: boolean
+                  description:
+                    description: A unique name for the edge gateway. Edge Gateway
+                      description
+                    type: string
+                  edgeClusterId:
+                    description: Specific Edge Cluster ID if required Select specific
+                      NSX-T Edge Cluster. Will be inherited from external network
+                      if not specified
+                    type: string
+                  externalNetworkId:
+                    description: 'An external network ID. Note: Data source vcd_external_network_v2
+                      can be used to lookup ID by name. External network ID'
+                    type: string
+                  org:
+                    description: The name of organization to which the VDC belongs.
+                      Optional if defined at provider level. The name of organization
+                      to use, optional if defined at provider level. Useful when connected
+                      as sysadmin working across different organizations
+                    type: string
+                  ownerId:
+                    description: 'The ID of VDC or VDC Group. Note: Data sources vcd_vdc_group
+                      or vcd_org_vdc can be used to lookup IDs by name ID of VDC or
+                      VDC Group'
+                    type: string
+                  startingVdcId:
+                    description: 'If owner_id is a VDC Group, by default Edge Gateway
+                      will be created in random member VDC and moved to destination
+                      VDC Group. This field allows to specify initial VDC for Edge
+                      Gateway (this can define Egress location of traffic in the VDC
+                      Group) Note: It can only be used when owner_id is a VDC Group.
+                      Optional ID of starting VDC if the ''owner_id'' is a VDC Group'
+                    type: string
+                  subnet:
+                    description: One or more subnets defined for edge gateway. One
+                      or more blocks with external network information to be attached
+                      to this gateway's interface
+                    items:
+                      properties:
+                        allocatedIps:
+                          description: One or more blocks of ip ranges in the subnet
+                            to be allocated Define one or more blocks to sub-allocate
+                            pools on the edge gateway
+                          items:
+                            properties:
+                              endAddress:
+                                description: '- End IP address of a range'
+                                type: string
+                              startAddress:
+                                description: '- Start IP address of a range'
+                                type: string
+                            required:
+                            - endAddress
+                            - startAddress
+                            type: object
+                          type: array
+                        gateway:
+                          description: '- Gateway for a subnet in external network
+                            Gateway address for a subnet'
+                          type: string
+                        prefixLength:
+                          description: '- Prefix length of a subnet in external network
+                            (e.g. 24 for netmask of 255.255.255.0) Netmask address
+                            for a subnet (e.g. 24 for /24)'
+                          type: number
+                        primaryIp:
+                          description: '- Primary IP address for edge gateway. Note:
+                            primary_ip must fall into allocated_ips block range as
+                            otherwise plan will not be clean with a new range defined
+                            for that particular block. There can only be one primary_ip
+                            defined for edge gateway. Primary IP address for the edge
+                            gateway - will be auto-assigned if not defined'
+                          type: string
+                      required:
+                      - allocatedIps
+                      - gateway
+                      - prefixLength
+                      type: object
+                    type: array
+                  vdc:
+                    description: Deprecated in favor of owner_id. The name of VDC
+                      that owns the edge gateway. Can be inherited from provider configuration
+                      if not defined here. The name of VDC to use, optional if defined
+                      at provider level
+                    type: string
+                required:
+                - externalNetworkId
+                - subnet
+                type: object
+              providerConfigRef:
+                default:
+                  name: default
+                description: ProviderConfigReference specifies how the provider that
+                  will be used to create, observe, update, and delete this managed
+                  resource should be configured.
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              providerRef:
+                description: 'ProviderReference specifies the provider that will be
+                  used to create, observe, update, and delete this managed resource.
+                  Deprecated: Please use ProviderConfigReference, i.e. `providerConfigRef`'
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              publishConnectionDetailsTo:
+                description: PublishConnectionDetailsTo specifies the connection secret
+                  config which contains a name, metadata and a reference to secret
+                  store config to which any connection details for this managed resource
+                  should be written. Connection details frequently include the endpoint,
+                  username, and password required to connect to the managed resource.
+                properties:
+                  configRef:
+                    default:
+                      name: default
+                    description: SecretStoreConfigRef specifies which secret store
+                      config should be used for this ConnectionSecret.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  metadata:
+                    description: Metadata is the metadata for connection secret.
+                    properties:
+                      annotations:
+                        additionalProperties:
+                          type: string
+                        description: Annotations are the annotations to be added to
+                          connection secret. - For Kubernetes secrets, this will be
+                          used as "metadata.annotations". - It is up to Secret Store
+                          implementation for others store types.
+                        type: object
+                      labels:
+                        additionalProperties:
+                          type: string
+                        description: Labels are the labels/tags to be added to connection
+                          secret. - For Kubernetes secrets, this will be used as "metadata.labels".
+                          - It is up to Secret Store implementation for others store
+                          types.
+                        type: object
+                      type:
+                        description: Type is the SecretType for the connection secret.
+                          - Only valid for Kubernetes Secret Stores.
+                        type: string
+                    type: object
+                  name:
+                    description: Name is the name of the connection secret.
+                    type: string
+                required:
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: WriteConnectionSecretToReference specifies the namespace
+                  and name of a Secret to which any connection details for this managed
+                  resource should be written. Connection details frequently include
+                  the endpoint, username, and password required to connect to the
+                  managed resource. This field is planned to be replaced in a future
+                  release in favor of PublishConnectionDetailsTo. Currently, both
+                  could be set independently and connection details would be published
+                  to both without affecting each other.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                  namespace:
+                    description: Namespace of the secret.
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+            required:
+            - forProvider
+            type: object
+          status:
+            description: EdgeGatewayStatus defines the observed state of EdgeGateway.
+            properties:
+              atProvider:
+                properties:
+                  id:
+                    type: string
+                  primaryIp:
+                    description: '- Primary IP address for edge gateway. Note: primary_ip
+                      must fall into allocated_ips block range as otherwise plan will
+                      not be clean with a new range defined for that particular block.
+                      There can only be one primary_ip defined for edge gateway. Primary
+                      IP address of edge gateway. Read-only (can be specified in specific
+                      subnet)'
+                    type: string
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: LastTransitionTime is the last time this condition
+                        transitioned from one status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: A Message containing details about this condition's
+                        last transition from one status to another, if any.
+                      type: string
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: Type of this condition. At most one of each condition
+                        type may apply to a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

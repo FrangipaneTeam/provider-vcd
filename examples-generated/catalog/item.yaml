@@ -1,8 +1,8 @@
-apiVersion: catalog.vcd.upbound.io/v1alpha1
+apiVersion: catalog.vcd.upbound.io/v1beta1
 kind: Item
 metadata:
   annotations:
-    meta.upbound.io/example-id: catalog/v1alpha1/item
+    meta.upbound.io/example-id: catalog/v1beta1/item
   labels:
     testing.upbound.io/example-name: myNewCatalogItem
   name: mynewcatalogitem

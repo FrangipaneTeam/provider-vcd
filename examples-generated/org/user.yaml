@@ -1,0 +1,20 @@
+apiVersion: org.vcd.upbound.io/v1beta1
+kind: User
+metadata:
+  annotations:
+    meta.upbound.io/example-id: org/v1beta1/user
+  labels:
+    testing.upbound.io/example-name: my-org-admin
+  name: my-org-admin
+spec:
+  forProvider:
+    description: a new org admin
+    org: my-org
+    passwordSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    role: Organization Administrator
+
+---
+

@@ -9,9 +9,10 @@ import (
 	_ "embed"
 
 	"github.com/FrangipaneTeam/provider-vcd/config/catalog"
-	"github.com/FrangipaneTeam/provider-vcd/config/egw"
+	"github.com/FrangipaneTeam/provider-vcd/config/edgegateway"
 	"github.com/FrangipaneTeam/provider-vcd/config/library"
 	"github.com/FrangipaneTeam/provider-vcd/config/network"
+	"github.com/FrangipaneTeam/provider-vcd/config/nsxt"
 	"github.com/FrangipaneTeam/provider-vcd/pkg/tools"
 	ujconfig "github.com/upbound/upjet/pkg/config"
 )
@@ -28,6 +29,7 @@ func GetProvider() *ujconfig.Provider {
 		ujconfig.WithIncludeList(ExternalNameConfigured()),
 		ujconfig.WithDefaultResourceOptions(
 			ExternalNameConfigurations(),
+			defaultVersion(),
 			GroupKindOverrides(),
 			KindOverrides(),
 		))
@@ -35,9 +37,10 @@ func GetProvider() *ujconfig.Provider {
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
 		catalog.Configure,
-		egw.Configure,
+		edgegateway.Configure,
 		library.Configure,
 		network.Configure,
+		nsxt.Configure,
 	} {
 		configure(pc)
 	}

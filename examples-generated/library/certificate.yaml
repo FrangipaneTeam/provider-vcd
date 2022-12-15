@@ -1,8 +1,8 @@
-apiVersion: library.vcd.upbound.io/v1alpha1
+apiVersion: library.vcd.upbound.io/v1beta1
 kind: Certificate
 metadata:
   annotations:
-    meta.upbound.io/example-id: library/v1alpha1/certificate
+    meta.upbound.io/example-id: library/v1beta1/certificate
   labels:
     testing.upbound.io/example-name: new-certificate
   name: new-certificate
