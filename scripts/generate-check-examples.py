@@ -78,7 +78,7 @@ if __name__ == "__main__":
         mapPrint[group].append(f"|{kind}|{known_crd_type}|{tested}|")
 
     # Print the map by group
-    for group in mapPrint:
+    for group in sorted(mapPrint):
         print(f'\n## {group}')
         print(f'|Kind|CRD|Tested|')
         print(f'|---|---|---|')
