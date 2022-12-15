@@ -1,0 +1,17 @@
+apiVersion: vm.vcd.upbound.io/v1beta1
+kind: PlacementPolicy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vm/v1beta1/placementpolicy
+  labels:
+    testing.upbound.io/example-name: test-placement-pol
+  name: test-placement-pol
+spec:
+  forProvider:
+    description: My awesome VM Placement Policy
+    providerVdcId: ${data.vcd_provider_vdc.pvdc.id}
+    vmGroupIds:
+    - ${data.vcd_vm_group.vm-group.id}
+
+---
+

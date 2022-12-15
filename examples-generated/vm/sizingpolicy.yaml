@@ -1,0 +1,26 @@
+apiVersion: vm.vcd.upbound.io/v1beta1
+kind: SizingPolicy
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vm/v1beta1/sizingpolicy
+  labels:
+    testing.upbound.io/example-name: minSize
+  name: minsize
+spec:
+  forProvider:
+    cpu:
+    - coresPerSocket: "3"
+      count: "9"
+      limitInMhz: "2400"
+      reservationGuarantee: "0.55"
+      shares: "886"
+      speedInMhz: "2500"
+    description: smallest size
+    memory:
+    - limitInMb: "2800"
+      reservationGuarantee: "0.3"
+      shares: "1580"
+      sizeInMb: "3200"
+
+---
+

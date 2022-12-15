@@ -1,0 +1,102 @@
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: Vapp
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/vapp
+  labels:
+    testing.upbound.io/example-name: web
+  name: web
+spec:
+  forProvider:
+    metadataEntry:
+    - key: CostAccount
+      value: Marketing Department
+
+---
+
+apiVersion: network.vcd.upbound.io/v1beta1
+kind: Direct
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/vapp
+  labels:
+    testing.upbound.io/example-name: direct-network
+  name: direct-network
+spec:
+  forProvider:
+    externalNetworkSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: OrgNetwork
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/vapp
+  labels:
+    testing.upbound.io/example-name: direct-network
+  name: direct-network
+spec:
+  forProvider:
+    vappName: web
+
+---
+
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: VM
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/vapp
+  labels:
+    testing.upbound.io/example-name: web1
+  name: web1
+spec:
+  forProvider:
+    cpus: 1
+    guestProperties:
+      vapp.property1: value1
+      vapp.property2: value2
+    lease:
+    - runtime_lease_in_sec: ${60 * 60 * 24 * 30}
+      storage_lease_in_sec: ${60 * 60 * 24 * 7}
+    memory: 2048
+    network:
+    - ipAllocationMode: POOL
+      name: net
+      type: org
+    vappNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: web
+    vappTemplateIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_catalog_vapp_template
+
+---
+
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: VM
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/vapp
+  labels:
+    testing.upbound.io/example-name: web2
+  name: web2
+spec:
+  forProvider:
+    cpus: 1
+    memory: 2048
+    network:
+    - ipAllocationMode: POOL
+      name: net
+      type: org
+    vappNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: web
+    vappTemplateIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_catalog_vapp_template
+
+---
+

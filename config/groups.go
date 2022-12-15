@@ -64,6 +64,12 @@ var GroupMap = map[string]GroupKindCalculator{
 
 	// move global role ?
 
+	// VM
+	"vcd_vm": ReplaceGroupWords("vm", 0), // Group: vm, Kind: VM
+
+	// VAPP
+	"vcd_vapp": ReplaceGroupWords("vapp", 0), // Group: vapp, Kind: VApp
+
 }
 
 // KindMap contains kind string overrides.

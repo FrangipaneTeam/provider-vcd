@@ -1,0 +1,22 @@
+apiVersion: vm.vcd.upbound.io/v1beta1
+kind: VM
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vm/v1beta1/vm
+  labels:
+    testing.upbound.io/example-name: TestVm
+  name: testvm
+spec:
+  forProvider:
+    cpus: 2
+    memory: 2048
+    network:
+    - ipAllocationMode: POOL
+      name: net-datacloud-r
+      type: org
+    vappTemplateIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_catalog_vapp_template
+
+---
+

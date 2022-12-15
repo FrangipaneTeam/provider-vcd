@@ -15,6 +15,9 @@ import (
 	"github.com/FrangipaneTeam/provider-vcd/config/network"
 	"github.com/FrangipaneTeam/provider-vcd/config/nsxt"
 	"github.com/FrangipaneTeam/provider-vcd/config/nsxv"
+	"github.com/FrangipaneTeam/provider-vcd/config/vapp"
+	"github.com/FrangipaneTeam/provider-vcd/config/vdc"
+	"github.com/FrangipaneTeam/provider-vcd/config/vm"
 	"github.com/FrangipaneTeam/provider-vcd/pkg/tools"
 	ujconfig "github.com/upbound/upjet/pkg/config"
 )
@@ -45,6 +48,9 @@ func GetProvider() *ujconfig.Provider {
 		nsxt.Configure,
 		global.Configure,
 		nsxv.Configure,
+		vm.Configure,
+		vapp.Configure,
+		vdc.Configure,
 	} {
 		configure(pc)
 	}

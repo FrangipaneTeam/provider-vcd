@@ -59,7 +59,21 @@ import (
 	vdc "github.com/FrangipaneTeam/provider-vcd/internal/controller/org/vdc"
 	vdcaccesscontrol "github.com/FrangipaneTeam/provider-vcd/internal/controller/org/vdcaccesscontrol"
 	providerconfig "github.com/FrangipaneTeam/provider-vcd/internal/controller/providerconfig"
+	accesscontrolvapp "github.com/FrangipaneTeam/provider-vcd/internal/controller/vapp/accesscontrol"
+	firewallrules "github.com/FrangipaneTeam/provider-vcd/internal/controller/vapp/firewallrules"
+	natrules "github.com/FrangipaneTeam/provider-vcd/internal/controller/vapp/natrules"
+	network "github.com/FrangipaneTeam/provider-vcd/internal/controller/vapp/network"
+	orgnetwork "github.com/FrangipaneTeam/provider-vcd/internal/controller/vapp/orgnetwork"
+	staticrouting "github.com/FrangipaneTeam/provider-vcd/internal/controller/vapp/staticrouting"
+	vapp "github.com/FrangipaneTeam/provider-vcd/internal/controller/vapp/vapp"
+	vm "github.com/FrangipaneTeam/provider-vcd/internal/controller/vapp/vm"
 	org "github.com/FrangipaneTeam/provider-vcd/internal/controller/vcd/org"
+	groupvdc "github.com/FrangipaneTeam/provider-vcd/internal/controller/vdc/group"
+	affinityrule "github.com/FrangipaneTeam/provider-vcd/internal/controller/vm/affinityrule"
+	internaldisk "github.com/FrangipaneTeam/provider-vcd/internal/controller/vm/internaldisk"
+	placementpolicy "github.com/FrangipaneTeam/provider-vcd/internal/controller/vm/placementpolicy"
+	sizingpolicy "github.com/FrangipaneTeam/provider-vcd/internal/controller/vm/sizingpolicy"
+	vmvm "github.com/FrangipaneTeam/provider-vcd/internal/controller/vm/vm"
 )
 
 // Setup creates all controllers with the supplied logger and adds them to
@@ -116,7 +130,21 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		vdc.Setup,
 		vdcaccesscontrol.Setup,
 		providerconfig.Setup,
+		accesscontrolvapp.Setup,
+		firewallrules.Setup,
+		natrules.Setup,
+		network.Setup,
+		orgnetwork.Setup,
+		staticrouting.Setup,
+		vapp.Setup,
+		vm.Setup,
 		org.Setup,
+		groupvdc.Setup,
+		affinityrule.Setup,
+		internaldisk.Setup,
+		placementpolicy.Setup,
+		sizingpolicy.Setup,
+		vmvm.Setup,
 	} {
 		if err := setup(mgr, o); err != nil {
 			return err

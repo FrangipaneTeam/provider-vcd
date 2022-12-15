@@ -1,0 +1,118 @@
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: NATRules
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/natrules
+  labels:
+    testing.upbound.io/example-name: vapp-nat
+  name: vapp-nat
+spec:
+  forProvider:
+    enableIpMasquerade: false
+    natType: portForwarding
+    rule:
+    - externalPort: "22"
+      forwardToPort: "-1"
+      protocol: TCP_UDP
+      vmIdSelector:
+        matchLabels:
+          testing.upbound.io/example-name: vm1
+      vmNicId: "0"
+    - externalPort: "-1"
+      forwardToPort: "80"
+      protocol: TCP
+      vmIdSelector:
+        matchLabels:
+          testing.upbound.io/example-name: vm2
+      vmNicId: "0"
+    vappIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: web
+
+---
+
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: Vapp
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/natrules
+  labels:
+    testing.upbound.io/example-name: web
+  name: web
+spec:
+  forProvider: {}
+
+---
+
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: FirewallRules
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/natrules
+  labels:
+    testing.upbound.io/example-name: vapp_fw1
+  name: vapp-fw1
+spec:
+  forProvider:
+    defaultAction: drop
+    enabled: true
+    vappIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: web
+
+---
+
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: FirewallRules
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/natrules
+  labels:
+    testing.upbound.io/example-name: vapp_fw2
+  name: vapp-fw2
+spec:
+  forProvider:
+    defaultAction: drop
+    enabled: true
+    vappIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: web
+
+---
+
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: Network
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/natrules
+  labels:
+    testing.upbound.io/example-name: vapp-net
+  name: vapp-net
+spec:
+  forProvider:
+    dns1: 192.168.2.1
+    gateway: 192.168.2.1
+    netmask: 255.255.255.0
+    orgNetworkName: my-vdc-int-net
+    staticIpPool:
+    - endAddress: 192.168.2.100
+      startAddress: 192.168.2.51
+    vappName: web
+
+---
+
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: OrgNetwork
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/natrules
+  labels:
+    testing.upbound.io/example-name: vapp-org-net
+  name: vapp-org-net
+spec:
+  forProvider:
+    isFenced: true
+    vappName: web
+
+---
+

@@ -1,0 +1,28 @@
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: Network
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/network
+  labels:
+    testing.upbound.io/example-name: vappNet
+  name: vappnet
+spec:
+  forProvider:
+    dhcpPool:
+    - endAddress: 192.168.2.50
+      startAddress: 192.168.2.2
+    dns1: 192.168.2.1
+    dns2: 192.168.2.2
+    dnsSuffix: mybiz.biz
+    gateway: 192.168.2.1
+    guestVlanAllowed: true
+    netmask: 255.255.255.0
+    org: my-org
+    staticIpPool:
+    - endAddress: 192.168.2.100
+      startAddress: 192.168.2.51
+    vappName: my-vapp
+    vdc: my-vdc
+
+---
+

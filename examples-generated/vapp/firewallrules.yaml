@@ -1,0 +1,66 @@
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: FirewallRules
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/firewallrules
+  labels:
+    testing.upbound.io/example-name: vapp-fw
+  name: vapp-fw
+spec:
+  forProvider:
+    defaultAction: drop
+    rule:
+    - destinationIp: any
+      destinationPort: "21"
+      name: drop-ftp-out
+      policy: drop
+      protocol: tcp
+      sourceIp: 10.10.0.0/24
+      sourcePort: any
+    - destinationIp: any
+      destinationPort: any
+      name: allow-outbound
+      policy: allow
+      protocol: any
+      sourceIp: 10.10.0.0/24
+      sourcePort: any
+    vappIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: web
+
+---
+
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: Vapp
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/firewallrules
+  labels:
+    testing.upbound.io/example-name: web
+  name: web
+spec:
+  forProvider: {}
+
+---
+
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: Network
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/firewallrules
+  labels:
+    testing.upbound.io/example-name: vapp-net
+  name: vapp-net
+spec:
+  forProvider:
+    dns1: 192.168.2.1
+    gateway: 192.168.2.1
+    netmask: 255.255.255.0
+    orgNetworkName: my-vdc-int-net
+    staticIpPool:
+    - endAddress: 192.168.2.100
+      startAddress: 192.168.2.51
+    vappName: web
+
+---
+

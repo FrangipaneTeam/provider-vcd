@@ -1,0 +1,20 @@
+apiVersion: vm.vcd.upbound.io/v1beta1
+kind: AffinityRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vm/v1beta1/affinityrule
+  labels:
+    testing.upbound.io/example-name: Test_VmAffinityRule1
+  name: test-vmaffinityrule1
+spec:
+  forProvider:
+    enabled: true
+    polarity: Affinity
+    required: true
+    vmIds:
+    - ${data.vcd_vapp_vm.Test_EmptyVm1a.id}
+    - ${data.vcd_vapp_vm.Test_EmptyVm1b.id}
+    - ${data.vcd_vapp_vm.Test_EmptyVm1c.id}
+
+---
+

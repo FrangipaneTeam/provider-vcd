@@ -186,6 +186,62 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// vcd_nsxv_ip_set
 	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxv_ip_set
 	"vcd_nsxv_ip_set": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.edge_gateway }}.{{ .external_name }}"),
+
+	// vcd_vm
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vm
+	"vcd_vm": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.urn:vcloud:vm:{{ .external_name }}"),
+
+	// vcd_vm_affinity_rule
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vm_affinity_rule
+	"vcd_vm_affinity_rule": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_vm_internal_disk
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vm_internal_disk
+	"vcd_vm_internal_disk": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .vapp_name }}.{{ .vm_name}}.{{ .external_name }}"),
+
+	// vcd_vm_sizing_policy
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vm_sizing_policy
+	"vcd_vm_sizing_policy": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_vm_placement_policy
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vm_placement_policy
+	"vcd_vm_placement_policy": config.TemplatedStringAsIdentifier("name", "urn:vcloud:vdcComputePolicy:{{ .external_name }}"),
+
+	// vcd_vapp
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vapp
+	"vcd_vapp": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_vapp_access_control
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vapp_access_control
+	"vcd_vapp_access_control": config.TemplatedStringAsIdentifier("vapp_id", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_vapp_firewall_rules
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vapp_firewall_rules
+	"vcd_vapp_firewall_rules": config.TemplatedStringAsIdentifier("network_id", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.vapp_id }}.{{ .external_name }}"),
+
+	// vcd_vapp_nat_rules
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vapp_nat_rules
+	"vcd_vapp_nat_rules": config.TemplatedStringAsIdentifier("network_id", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.vapp_id }}.{{ .external_name }}"),
+
+	// vcd_vapp_network
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vapp_network
+	"vcd_vapp_network": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.vapp_name }}.{{ .external_name }}"),
+
+	// vcd_vapp_org_network
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vapp_org_network
+	"vcd_vapp_org_network": config.TemplatedStringAsIdentifier("org_network_name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.vapp_name }}.{{ .external_name }}"),
+
+	// vcd_vapp_static_routing
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vapp_static_routing
+	"vcd_vapp_static_routing": config.TemplatedStringAsIdentifier("network_id", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.vapp_id }}.{{ .external_name }}"),
+
+	// vcd_vapp_vm
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vapp_vm
+	"vcd_vapp_vm": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.vapp_name }}.{{ .external_name }}"),
+
+	// vcd_vdc_group
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vdc_group
+	"vcd_vdc_group": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .external_name }}"),
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

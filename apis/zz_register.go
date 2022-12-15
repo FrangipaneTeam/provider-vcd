@@ -20,7 +20,10 @@ import (
 	v1beta1org "github.com/FrangipaneTeam/provider-vcd/apis/org/v1beta1"
 	v1alpha1 "github.com/FrangipaneTeam/provider-vcd/apis/v1alpha1"
 	v1beta1apis "github.com/FrangipaneTeam/provider-vcd/apis/v1beta1"
+	v1beta1vapp "github.com/FrangipaneTeam/provider-vcd/apis/vapp/v1beta1"
 	v1beta1vcd "github.com/FrangipaneTeam/provider-vcd/apis/vcd/v1beta1"
+	v1beta1vdc "github.com/FrangipaneTeam/provider-vcd/apis/vdc/v1beta1"
+	v1beta1vm "github.com/FrangipaneTeam/provider-vcd/apis/vm/v1beta1"
 )
 
 func init() {
@@ -36,7 +39,10 @@ func init() {
 		v1beta1org.SchemeBuilder.AddToScheme,
 		v1alpha1.SchemeBuilder.AddToScheme,
 		v1beta1apis.SchemeBuilder.AddToScheme,
+		v1beta1vapp.SchemeBuilder.AddToScheme,
 		v1beta1vcd.SchemeBuilder.AddToScheme,
+		v1beta1vdc.SchemeBuilder.AddToScheme,
+		v1beta1vm.SchemeBuilder.AddToScheme,
 	)
 }
 

@@ -1,0 +1,119 @@
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: VM
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/vm
+  labels:
+    testing.upbound.io/example-name: web1
+  name: web1
+spec:
+  forProvider:
+    cpuCores: 1
+    cpus: 2
+    guestProperties:
+      another.var.name: var-value
+      guest.hostname: my-host
+    memory: 1024
+    metadataEntry:
+    - key: role
+      value: web
+    - key: env
+      value: staging
+    - key: version
+      value: v1
+    - key: my_key
+      value: my value
+    network:
+    - ipAllocationMode: POOL
+      isPrimary: true
+      name: ${vcd_vapp_org_network.direct-net.org_network_name}
+      type: org
+    vappNameSelector:
+      matchLabels:
+        testing.upbound.io/example-name: web
+    vappTemplateIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_catalog_vapp_template
+
+---
+
+apiVersion: network.vcd.upbound.io/v1beta1
+kind: Direct
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/vm
+  labels:
+    testing.upbound.io/example-name: direct-external
+  name: direct-external
+spec:
+  forProvider:
+    externalNetworkSelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+
+---
+
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: Vapp
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/vm
+  labels:
+    testing.upbound.io/example-name: web
+  name: web
+spec:
+  forProvider: {}
+
+---
+
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: Network
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/vm
+  labels:
+    testing.upbound.io/example-name: vapp-net
+  name: vapp-net
+spec:
+  forProvider:
+    dns1: 192.168.2.1
+    dns2: 192.168.2.2
+    dnsSuffix: mybiz.biz
+    gateway: 192.168.2.1
+    guestVlanAllowed: true
+    netmask: 255.255.255.0
+    staticIpPool:
+    - endAddress: 192.168.2.100
+      startAddress: 192.168.2.51
+    vappName: web
+
+---
+
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: OrgNetwork
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/vm
+  labels:
+    testing.upbound.io/example-name: direct-net
+  name: direct-net
+spec:
+  forProvider:
+    vappName: web
+
+---
+
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: OrgNetwork
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/vm
+  labels:
+    testing.upbound.io/example-name: routed-net
+  name: routed-net
+spec:
+  forProvider:
+    vappName: web
+
+---
+

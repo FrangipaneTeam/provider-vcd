@@ -1,0 +1,16 @@
+apiVersion: vapp.vcd.upbound.io/v1beta1
+kind: OrgNetwork
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vapp/v1beta1/orgnetwork
+  labels:
+    testing.upbound.io/example-name: vappOrgNet
+  name: vapporgnet
+spec:
+  forProvider:
+    org: my-org
+    vappName: my-vapp
+    vdc: my-vdc
+
+---
+
