@@ -41,6 +41,8 @@ if __name__ == "__main__":
     except KeyError:
         exception_set = set()
     known_crd_types = load_gvks(sys.argv[1], load_crd_type)
+    # sort known_crd_types set
+    known_crd_types = sorted(known_crd_types)
 
     example_types = load_gvks(sys.argv[2], lambda t: [] if t is None or not {"kind", "apiVersion"}.issubset(t.keys())
                               else [f'{t["kind"]}.{t["apiVersion"]}'])
