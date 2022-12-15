@@ -1,0 +1,60 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: ALBServiceEngineGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/albserviceenginegroup
+  labels:
+    testing.upbound.io/example-name: first
+  name: first
+spec:
+  forProvider:
+    albCloudIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: first
+    description: Service Engine for Terraform documentation
+    importableServiceEngineGroupName: Default-Group
+    reservationModel: SHARED
+    syncOnRefresh: false
+
+---
+
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: ALBCloud
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/albserviceenginegroup
+  labels:
+    testing.upbound.io/example-name: first
+  name: first
+spec:
+  forProvider:
+    controllerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: first
+    description: first alb cloud
+    importableCloudId: ${data.vcd_nsxt_alb_importable_cloud.cld.id}
+    networkPoolId: ${data.vcd_nsxt_alb_importable_cloud.cld.network_pool_id}
+
+---
+
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: ALBController
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/albserviceenginegroup
+  labels:
+    testing.upbound.io/example-name: first
+  name: first
+spec:
+  forProvider:
+    description: first alb controller
+    licenseType: ENTERPRISE
+    passwordSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    url: https://controller.myXZ
+    username: admin
+
+---
+

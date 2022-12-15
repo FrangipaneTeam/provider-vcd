@@ -1,0 +1,47 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: ALBVirtualService
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/albvirtualservice
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    applicationProfileType: HTTP
+    edgeGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway
+    org: my-org
+    poolIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: test
+    serviceEngineGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: assignment
+    servicePort:
+    - startPort: 80
+      type: TCP_PROXY
+    virtualIpAddressSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway
+
+---
+
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: ALBPool
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/albvirtualservice
+  labels:
+    testing.upbound.io/example-name: test
+  name: test
+spec:
+  forProvider:
+    edgeGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway
+    org: my-org
+
+---
+

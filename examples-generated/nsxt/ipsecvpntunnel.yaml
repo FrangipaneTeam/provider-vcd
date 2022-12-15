@@ -1,0 +1,34 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: IpsecVPNTunnel
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/ipsecvpntunnel
+  labels:
+    testing.upbound.io/example-name: tunnel1
+  name: tunnel1
+spec:
+  forProvider:
+    description: testing tunnel
+    edgeGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway
+    localIpAddressSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway
+    localNetworks:
+    - 10.10.10.0/24
+    - 30.30.30.0/28
+    - 40.40.40.1/32
+    org: my-org
+    preSharedKeySecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    remoteIpAddress: 1.2.3.4
+    remoteNetworks:
+    - 192.168.1.0/24
+    - 192.168.10.0/24
+    - 192.168.20.0/28
+
+---
+

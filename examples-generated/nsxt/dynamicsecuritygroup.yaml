@@ -1,0 +1,57 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: DynamicSecurityGroup
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/dynamicsecuritygroup
+  labels:
+    testing.upbound.io/example-name: group1
+  name: group1
+spec:
+  forProvider:
+    criteria:
+    - rule:
+      - operator: EQUALS
+        type: VM_TAG
+        value: tag-equals
+      - operator: CONTAINS
+        type: VM_TAG
+        value: tag-contains
+      - operator: STARTS_WITH
+        type: VM_TAG
+        value: tag-starts-with
+      - operator: ENDS_WITH
+        type: VM_TAG
+        value: tag-ends-with
+    - rule:
+      - operator: CONTAINS
+        type: VM_NAME
+        value: name-contains-4
+      - operator: STARTS_WITH
+        type: VM_NAME
+        value: starts_with2
+      - operator: CONTAINS
+        type: VM_NAME
+        value: name-contains-22
+      - operator: STARTS_WITH
+        type: VM_NAME
+        value: starts_with22
+    - rule:
+      - operator: CONTAINS
+        type: VM_NAME
+        value: name-contains3
+      - operator: STARTS_WITH
+        type: VM_NAME
+        value: starts_with3
+      - operator: CONTAINS
+        type: VM_NAME
+        value: name-contains33
+      - operator: STARTS_WITH
+        type: VM_NAME
+        value: starts_with33
+    org: cloud
+    vdcGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_vdc_group
+
+---
+

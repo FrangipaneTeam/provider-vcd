@@ -78,6 +78,114 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// vcd_nsxt_edgegateway
 	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_edgegateway
 	"vcd_nsxt_edgegateway": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_nsxt_alb_cloud
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_alb_cloud
+	"vcd_nsxt_alb_cloud": config.NameAsIdentifier,
+
+	// vcd_nsxt_alb_controller
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_alb_controller
+	"vcd_nsxt_alb_controller": config.NameAsIdentifier,
+
+	// vcd_nsxt_alb_edgegateway_service_engine_group
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_alb_edgegateway_service_engine_group
+	"vcd_nsxt_alb_edgegateway_service_engine_group": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .edge_gateway_id }}.{{ .external_name }}"),
+
+	// vcd_nsxt_alb_settings
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_alb_settings
+	"vcd_nsxt_alb_settings": config.NameAsIdentifier,
+
+	// vcd_nsxt_alb_pool
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_alb_pool
+	"vcd_nsxt_alb_pool": config.NameAsIdentifier,
+
+	// vcd_nsxt_alb_service_engine_group
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_alb_service_engine_group
+	"vcd_nsxt_alb_service_engine_group": config.NameAsIdentifier,
+
+	// vcd_nsxt_alb_virtual_service
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_alb_virtual_service
+	"vcd_nsxt_alb_virtual_service": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .edge_gateway_id }}.{{ .external_name }}"),
+
+	// vcd_nsxt_app_port_profile
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_app_port_profile
+	"vcd_nsxt_app_port_profile": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_nsxt_distributed_firewall
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_distributed_firewall
+	"vcd_nsxt_distributed_firewall": TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.vdc }}"),
+
+	// vcd_nsxt_dynamic_security_group
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_dynamic_security_group
+	"vcd_nsxt_dynamic_security_group": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_nsxt_edgegateway_bgp_configuration
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_edgegateway_bgp_configuration
+	"vcd_nsxt_edgegateway_bgp_configuration": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_nsxt_edgegateway_bgp_ip_prefix_list
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_edgegateway_bgp_ip_prefix_list
+	"vcd_nsxt_edgegateway_bgp_ip_prefix_list": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .edge_gateway_id }}.{{ .external_name }}"),
+
+	// vcd_nsxt_edgegateway_bgp_neighbor
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_edgegateway_bgp_neighbor
+	"vcd_nsxt_edgegateway_bgp_neighbor": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .edge_gateway_id }}.{{ .external_name }}"),
+
+	// vcd_nsxt_firewall
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_firewall
+	"vcd_nsxt_firewall": config.TemplatedStringAsIdentifier("edge_gateway", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_nsxt_ip_set
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_ip_set
+	"vcd_nsxt_ip_set": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .edge_gateway_id }}.{{ .external_name }}"),
+
+	// vcd_nsxt_ipsec_vpn_tunnel
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_ipsec_vpn_tunnel
+	"vcd_nsxt_ipsec_vpn_tunnel": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .edge_gateway_id }}.{{ .external_name }}"),
+
+	// vcd_nsxt_nat_rule
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_nat_rule
+	"vcd_nsxt_nat_rule": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .edge_gateway_id }}.{{ .external_name }}"),
+
+	// vcd_nsxt_network_dhcp
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_network_dhcp
+	"vcd_nsxt_network_dhcp": config.TemplatedStringAsIdentifier("org_network_id", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_nsxt_network_imported
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_network_imported
+	"vcd_nsxt_network_imported": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_nsxt_route_advertisement
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_route_advertisement
+	"vcd_nsxt_route_advertisement": config.TemplatedStringAsIdentifier("edge_gateway_id", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_nsxt_security_group
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxt_security_group
+	"vcd_nsxt_security_group": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .edge_gateway_id }}.{{ .external_name }}"),
+
+	// vcd_global_role
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/global_role
+	"vcd_global_role": config.NameAsIdentifier,
+
+	// vcd_nsxv_dhcp_relay
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxv_dhcp_relay
+	"vcd_nsxv_dhcp_relay": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_nsxv_dnat
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxv_dnat
+	"vcd_nsxv_dnat": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.edge_gateway }}.{{ .external_name }}"),
+
+	// vcd_nsxv_firewall_rule
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxv_firewall_rule
+	"vcd_nsxv_firewall_rule": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.edge_gateway }}.{{ .external_name }}"),
+
+	// vcd_nsxv_snat
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxv_snat
+	"vcd_nsxv_snat": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.edge_gateway }}.{{ .external_name }}"),
+
+	// vcd_nsxv_ip_set
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/nsxv_ip_set
+	"vcd_nsxv_ip_set": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.edge_gateway }}.{{ .external_name }}"),
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

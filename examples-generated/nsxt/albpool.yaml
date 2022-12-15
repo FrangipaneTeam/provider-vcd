@@ -1,0 +1,19 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: ALBPool
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/albpool
+  labels:
+    testing.upbound.io/example-name: first-pool
+  name: first-pool
+spec:
+  forProvider:
+    edgeGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: test
+    member:
+    - ipAddress: 192.168.1.1
+    org: sample
+
+---
+

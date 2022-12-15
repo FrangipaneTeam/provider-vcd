@@ -1,0 +1,26 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: NetworkImported
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/networkimported
+  labels:
+    testing.upbound.io/example-name: nsxt-backed
+  name: nsxt-backed
+spec:
+  forProvider:
+    description: My NSX-T VDC Imported network type
+    gateway: 1.1.1.1
+    nsxtLogicalSwitchName: nsxt_segment_name
+    org: my-org
+    ownerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_org_vdc
+    prefixLength: 24
+    staticIpPool:
+    - endAddress: 1.1.1.20
+      startAddress: 1.1.1.10
+    - endAddress: 1.1.1.103
+      startAddress: 1.1.1.100
+
+---
+

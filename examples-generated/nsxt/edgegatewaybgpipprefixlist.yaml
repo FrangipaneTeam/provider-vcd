@@ -1,0 +1,33 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: EdgeGatewayBGPIPPrefixList
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/edgegatewaybgpipprefixlist
+  labels:
+    testing.upbound.io/example-name: testing
+  name: testing
+spec:
+  forProvider:
+    description: This definition is meant only to demostrate capabilities
+    edgeGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway
+    ipPrefix:
+    - action: PERMIT
+      network: 10.10.10.0/24
+    - action: DENY
+      network: 20.10.10.0/24
+    - action: DENY
+      network: 2001:db8::/48
+    - action: DENY
+      greaterThanOrEqualTo: "25"
+      lessThanOrEqualTo: "27"
+      network: 30.10.10.0/24
+    - action: PERMIT
+      greaterThanOrEqualTo: "16"
+      lessThanOrEqualTo: "24"
+      network: 40.0.0.0/8
+    org: cloud
+
+---
+

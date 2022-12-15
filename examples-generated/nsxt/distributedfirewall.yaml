@@ -1,0 +1,49 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: DistributedFirewall
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/distributedfirewall
+  labels:
+    testing.upbound.io/example-name: t1
+  name: t1
+spec:
+  forProvider:
+    org: my-org
+    rule:
+    - action: ALLOW
+      appPortProfileIdsRefs:
+      - name: vcd_nsxt_app_port_profile
+      - name: vcd_nsxt_app_port_profile
+      comment: My first rule to allow everything
+      description: description
+      name: rule1
+      sourceGroupsExcluded: true
+      sourceIdsRefs:
+      - name: vcd_nsxt_ip_set
+      - name: vcd_nsxt_ip_set
+    - action: DROP
+      direction: IN_OUT
+      enabled: false
+      logging: true
+      name: rule2
+      networkContextProfileIds:
+      - ${vcd_nsxt_network_context_profile.cp1.id}
+    - action: REJECT
+      ipProtocol: IPV4
+      name: rule3
+    - action: ALLOW
+      destinationGroupsExcluded: false
+      direction: OUT
+      ipProtocol: IPV6
+      name: rule4
+      sourceGroupsExcluded: false
+    - action: ALLOW
+      direction: IN
+      ipProtocol: IPV6
+      name: rule5
+    vdcGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: existing
+
+---
+

@@ -1,0 +1,23 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: EdgeGatewayBGPConfiguration
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/edgegatewaybgpconfiguration
+  labels:
+    testing.upbound.io/example-name: testing
+  name: testing
+spec:
+  forProvider:
+    ecmpEnabled: true
+    edgeGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway
+    enabled: false
+    gracefulRestartMode: HELPER_ONLY
+    gracefulRestartTimer: 190
+    localAsNumber: "65430"
+    org: my-org
+    staleRouteTimer: 600
+
+---
+

@@ -1,0 +1,24 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: IPSet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/ipset
+  labels:
+    testing.upbound.io/example-name: set1
+  name: set1
+spec:
+  forProvider:
+    description: IP Set containing IPv4 and IPv6 ranges
+    edgeGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway
+    ipAddresses:
+    - 12.12.12.1
+    - 10.10.10.0/24
+    - 11.11.11.1-11.11.11.2
+    - 2001:db8::/48
+    - 2001:db6:0:0:0:0:0:0-2001:db6:0:ffff:ffff:ffff:ffff:ffff
+    org: my-org
+
+---
+

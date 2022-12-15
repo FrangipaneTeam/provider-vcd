@@ -17,6 +17,7 @@ import (
 	edgegateway "github.com/FrangipaneTeam/provider-vcd/internal/controller/edgegateway/edgegateway"
 	settings "github.com/FrangipaneTeam/provider-vcd/internal/controller/edgegateway/settings"
 	vpn "github.com/FrangipaneTeam/provider-vcd/internal/controller/edgegateway/vpn"
+	role "github.com/FrangipaneTeam/provider-vcd/internal/controller/global/role"
 	certificate "github.com/FrangipaneTeam/provider-vcd/internal/controller/library/certificate"
 	direct "github.com/FrangipaneTeam/provider-vcd/internal/controller/network/direct"
 	externalnetwork "github.com/FrangipaneTeam/provider-vcd/internal/controller/network/externalnetwork"
@@ -25,7 +26,33 @@ import (
 	isolatedv2 "github.com/FrangipaneTeam/provider-vcd/internal/controller/network/isolatedv2"
 	routed "github.com/FrangipaneTeam/provider-vcd/internal/controller/network/routed"
 	routedv2 "github.com/FrangipaneTeam/provider-vcd/internal/controller/network/routedv2"
+	albcloud "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/albcloud"
+	albcontroller "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/albcontroller"
+	albedgegatewayserviceenginegroup "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/albedgegatewayserviceenginegroup"
+	albpool "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/albpool"
+	albserviceenginegroup "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/albserviceenginegroup"
+	albsettings "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/albsettings"
+	albvirtualservice "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/albvirtualservice"
+	appportprofile "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/appportprofile"
+	distributedfirewall "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/distributedfirewall"
+	dynamicsecuritygroup "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/dynamicsecuritygroup"
 	edgegatewaynsxt "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/edgegateway"
+	edgegatewaybgpconfiguration "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/edgegatewaybgpconfiguration"
+	edgegatewaybgpipprefixlist "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/edgegatewaybgpipprefixlist"
+	edgegatewaybgpneighbor "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/edgegatewaybgpneighbor"
+	firewall "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/firewall"
+	ipsecvpntunnel "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/ipsecvpntunnel"
+	ipset "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/ipset"
+	natrule "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/natrule"
+	networkdhcp "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/networkdhcp"
+	networkimported "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/networkimported"
+	routeadvertisement "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/routeadvertisement"
+	securitygroup "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxt/securitygroup"
+	dhcprelay "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxv/dhcprelay"
+	dnat "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxv/dnat"
+	firewallrule "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxv/firewallrule"
+	ipsetnsxv "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxv/ipset"
+	snat "github.com/FrangipaneTeam/provider-vcd/internal/controller/nsxv/snat"
 	group "github.com/FrangipaneTeam/provider-vcd/internal/controller/org/group"
 	ldap "github.com/FrangipaneTeam/provider-vcd/internal/controller/org/ldap"
 	user "github.com/FrangipaneTeam/provider-vcd/internal/controller/org/user"
@@ -47,6 +74,7 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		edgegateway.Setup,
 		settings.Setup,
 		vpn.Setup,
+		role.Setup,
 		certificate.Setup,
 		direct.Setup,
 		externalnetwork.Setup,
@@ -55,7 +83,33 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		isolatedv2.Setup,
 		routed.Setup,
 		routedv2.Setup,
+		albcloud.Setup,
+		albcontroller.Setup,
+		albedgegatewayserviceenginegroup.Setup,
+		albpool.Setup,
+		albserviceenginegroup.Setup,
+		albsettings.Setup,
+		albvirtualservice.Setup,
+		appportprofile.Setup,
+		distributedfirewall.Setup,
+		dynamicsecuritygroup.Setup,
 		edgegatewaynsxt.Setup,
+		edgegatewaybgpconfiguration.Setup,
+		edgegatewaybgpipprefixlist.Setup,
+		edgegatewaybgpneighbor.Setup,
+		firewall.Setup,
+		ipsecvpntunnel.Setup,
+		ipset.Setup,
+		natrule.Setup,
+		networkdhcp.Setup,
+		networkimported.Setup,
+		routeadvertisement.Setup,
+		securitygroup.Setup,
+		dhcprelay.Setup,
+		dnat.Setup,
+		firewallrule.Setup,
+		ipsetnsxv.Setup,
+		snat.Setup,
 		group.Setup,
 		ldap.Setup,
 		user.Setup,

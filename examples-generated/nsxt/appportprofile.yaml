@@ -1,0 +1,19 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: AppPortProfile
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/appportprofile
+  labels:
+    testing.upbound.io/example-name: icmpv4
+  name: icmpv4
+spec:
+  forProvider:
+    appPort:
+    - protocol: ICMPv4
+    contextId: ${data.vcd_nsxt_manager.first.id}
+    description: Application port profile for ICMPv4
+    org: System
+    scope: PROVIDER
+
+---
+

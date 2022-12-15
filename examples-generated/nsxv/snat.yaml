@@ -1,0 +1,22 @@
+apiVersion: nsxv.vcd.upbound.io/v1beta1
+kind: Snat
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxv/v1beta1/snat
+  labels:
+    testing.upbound.io/example-name: web
+  name: web
+spec:
+  forProvider:
+    edgeGatewaySelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    networkName: my-org-network
+    networkType: org
+    org: my-org
+    originalAddress: 10.10.10.15/24
+    translatedAddress: 78.101.10.20
+    vdc: my-vdc
+
+---
+

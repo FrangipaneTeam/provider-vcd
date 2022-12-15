@@ -1,0 +1,22 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: Firewall
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/firewall
+  labels:
+    testing.upbound.io/example-name: testing
+  name: testing
+spec:
+  forProvider:
+    edgeGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway
+    org: my-org
+    rule:
+    - action: ALLOW
+      direction: IN_OUT
+      ipProtocol: IPV4
+      name: allow all IPv4 traffic
+
+---
+

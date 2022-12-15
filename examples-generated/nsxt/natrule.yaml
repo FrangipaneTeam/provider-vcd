@@ -1,0 +1,25 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: NATRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/natrule
+  labels:
+    testing.upbound.io/example-name: snat
+  name: snat
+spec:
+  forProvider:
+    description: description
+    edgeGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway
+    externalAddressSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway
+    internalAddress: 11.11.11.0/24
+    logging: true
+    org: dainius
+    ruleType: SNAT
+    snatDestinationAddress: 8.8.8.8
+
+---
+

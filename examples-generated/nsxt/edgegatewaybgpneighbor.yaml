@@ -1,0 +1,33 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: EdgeGatewayBGPNeighbor
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/edgegatewaybgpneighbor
+  labels:
+    testing.upbound.io/example-name: neighbor-one
+  name: neighbor-one
+spec:
+  forProvider:
+    allowAsIn: false
+    bfdDeadMultiple: 5
+    bfdEnabled: true
+    bfdInterval: 800
+    edgeGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway
+    gracefulRestartMode: GRACEFUL_AND_HELPER
+    holdDownTimer: 400
+    inFilterIpPrefixListIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway_bgp_ip_prefix_list
+    ipAddress: 1.1.1.1
+    keepAliveTimer: 78
+    org: datacloud
+    outFilterIpPrefixListIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway_bgp_ip_prefix_list
+    remoteAsNumber: "62513"
+    routeFiltering: IPV4
+
+---
+

@@ -70,8 +70,17 @@ type EdgeGatewayParameters struct {
 	// vcd_org_vdc can be used to lookup IDs by
 	// name
 	// ID of VDC or VDC Group
+	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-vcd/apis/org/v1beta1.Group
 	// +kubebuilder:validation:Optional
 	OwnerID *string `json:"ownerId,omitempty" tf:"owner_id,omitempty"`
+
+	// Reference to a Group in org to populate ownerId.
+	// +kubebuilder:validation:Optional
+	OwnerIDRef *v1.Reference `json:"ownerIdRef,omitempty" tf:"-"`
+
+	// Selector for a Group in org to populate ownerId.
+	// +kubebuilder:validation:Optional
+	OwnerIDSelector *v1.Selector `json:"ownerIdSelector,omitempty" tf:"-"`
 
 	// If owner_id is a VDC Group, by default Edge
 	// Gateway will be created in random member VDC and moved to destination VDC Group. This field allows

@@ -20,6 +20,9 @@ func Configure(p *config.Provider) {
 	// vcd_network_isolated
 	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/network_isolated
 	p.AddResourceConfigurator("vcd_network_isolated", func(r *config.Resource) {
+		r.References["owner_id"] = config.Reference{
+			Type: tools.GenerateType("org", "Group"),
+		}
 	})
 
 	// vcd_network_isolated_v2

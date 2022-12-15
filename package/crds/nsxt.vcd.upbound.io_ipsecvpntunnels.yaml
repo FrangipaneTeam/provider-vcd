@@ -1,0 +1,634 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.8.0
+  creationTimestamp: null
+  name: ipsecvpntunnels.nsxt.vcd.upbound.io
+spec:
+  group: nsxt.vcd.upbound.io
+  names:
+    categories:
+    - crossplane
+    - managed
+    - vcd
+    kind: IpsecVPNTunnel
+    listKind: IpsecVPNTunnelList
+    plural: ipsecvpntunnels
+    singular: ipsecvpntunnel
+  scope: Cluster
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.conditions[?(@.type=='Ready')].status
+      name: READY
+      type: string
+    - jsonPath: .status.conditions[?(@.type=='Synced')].status
+      name: SYNCED
+      type: string
+    - jsonPath: .metadata.annotations.crossplane\.io/external-name
+      name: EXTERNAL-NAME
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: AGE
+      type: date
+    name: v1beta1
+    schema:
+      openAPIV3Schema:
+        description: IpsecVPNTunnel is the Schema for the IpsecVPNTunnels API. Provides
+          a resource to manage NSX-T IPsec VPN Tunnel. You can configure site-to-site
+          connectivity between an NSX-T Data Center Edge Gateway and remote sites.
+          The remote sites must use NSX-T Data Center, have third-party hardware routers,
+          or VPN gateways that support IPSec.
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: IpsecVPNTunnelSpec defines the desired state of IpsecVPNTunnel
+            properties:
+              deletionPolicy:
+                default: Delete
+                description: DeletionPolicy specifies what will happen to the underlying
+                  external when this managed resource is deleted - either "Delete"
+                  or "Orphan" the external resource.
+                enum:
+                - Orphan
+                - Delete
+                type: string
+              forProvider:
+                properties:
+                  description:
+                    description: An optional description of the NSX-T IPsec VPN Tunnel
+                      Description IP Sec VPN Tunnel
+                    type: string
+                  edgeGatewayId:
+                    description: The ID of the Edge Gateway (NSX-T only). Can be looked
+                      up using vcd_nsxt_edgegateway data source Edge gateway name
+                      in which IP Sec VPN configuration is located
+                    type: string
+                  edgeGatewayIdRef:
+                    description: Reference to a EdgeGateway to populate edgeGatewayId.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  edgeGatewayIdSelector:
+                    description: Selector for a EdgeGateway to populate edgeGatewayId.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  enabled:
+                    description: Enables or disables IPsec VPN Tunnel (default true)
+                      Enables or disables this configuration (default true)
+                    type: boolean
+                  localIpAddress:
+                    description: IPv4 Address for the endpoint. This has to be a suballocated
+                      IP on the Edge Gateway. IPv4 Address for the endpoint. This
+                      has to be a sub-allocated IP on the Edge Gateway.
+                    type: string
+                  localIpAddressRef:
+                    description: Reference to a EdgeGateway to populate localIpAddress.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  localIpAddressSelector:
+                    description: Selector for a EdgeGateway to populate localIpAddress.
+                    properties:
+                      matchControllerRef:
+                        description: MatchControllerRef ensures an object with the
+                          same controller reference as the selecting object is selected.
+                        type: boolean
+                      matchLabels:
+                        additionalProperties:
+                          type: string
+                        description: MatchLabels ensures an object with matching labels
+                          is selected.
+                        type: object
+                      policy:
+                        description: Policies for selection.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    type: object
+                  localNetworks:
+                    description: A set of local networks in CIDR format. At least
+                      one value required Set of local networks in CIDR format. At
+                      least one value is required
+                    items:
+                      type: string
+                    type: array
+                  logging:
+                    description: Sets whether logging for the tunnel is enabled or
+                      not. (default - false) Sets whether logging for the tunnel is
+                      enabled or not. (default - false)
+                    type: boolean
+                  org:
+                    description: The name of organization to use, optional if defined
+                      at provider level. Useful when connected as sysadmin working
+                      across different organisations. The name of organization to
+                      use, optional if defined at provider level. Useful when connected
+                      as sysadmin working across different organizations
+                    type: string
+                  preSharedKeySecretRef:
+                    description: Pre-shared key for negotiation. Note the pre-shared
+                      key must be the same on the other end of the IPSec VPN tunnel.
+                      Pre-Shared Key (PSK)
+                    properties:
+                      key:
+                        description: The key to select.
+                        type: string
+                      name:
+                        description: Name of the secret.
+                        type: string
+                      namespace:
+                        description: Namespace of the secret.
+                        type: string
+                    required:
+                    - key
+                    - name
+                    - namespace
+                    type: object
+                  remoteIpAddress:
+                    description: Public IPv4 Address of the remote device terminating
+                      the VPN connection Public IPv4 Address of the remote device
+                      terminating the VPN connection
+                    type: string
+                  remoteNetworks:
+                    description: Set of remote networks in CIDR format. Leaving it
+                      empty is interpreted as 0.0.0.0/0 Set of remote networks in
+                      CIDR format. Leaving it empty is interpreted as 0.0.0.0/0
+                    items:
+                      type: string
+                    type: array
+                  securityProfileCustomization:
+                    description: a block allowing to customize default security profile
+                      parameters Security profile customization
+                    items:
+                      properties:
+                        dpdProbeInternal:
+                          description: Value in seconds of dead probe detection interval.
+                            Minimum is 3 seconds and the maximum is 60 seconds Value
+                            in seconds of dead probe detection interval. Minimum is
+                            3 seconds and the maximum is 60 seconds
+                          type: number
+                        ikeDhGroups:
+                          description: Diffie-Hellman groups to be used if Perfect
+                            Forward Secrecy is enabled. One of GROUP2, GROUP5, GROUP14,
+                            GROUP15, GROUP16, GROUP19, GROUP20, GROUP21 Diffie-Hellman
+                            groups to be used if Perfect Forward Secrecy is enabled.
+                            One of GROUP2, GROUP5, GROUP14, GROUP15, GROUP16, GROUP19,
+                            GROUP20, GROUP21
+                          items:
+                            type: string
+                          type: array
+                        ikeDigestAlgorithms:
+                          description: Secure hashing algorithms to use during the
+                            IKE negotiation. One of SHA1, SHA2_256, SHA2_384, SHA2_512
+                            Secure hashing algorithms to use during the IKE negotiation.
+                            One of SHA1, SHA2_256, SHA2_384, SHA2_512
+                          items:
+                            type: string
+                          type: array
+                        ikeEncryptionAlgorithms:
+                          description: Encryption algorithms One of AES_128, AES_256,
+                            AES_GCM_128, AES_GCM_192, AES_GCM_256 Encryption algorithms.
+                            One of SHA1, SHA2_256, SHA2_384, SHA2_512
+                          items:
+                            type: string
+                          type: array
+                        ikeSaLifetime:
+                          description: Security association lifetime in seconds. It
+                            is number of seconds before the IPsec tunnel needs to
+                            reestablish Security Association life time (in seconds).
+                            It is number of seconds before the IPsec tunnel needs
+                            to reestablish
+                          type: number
+                        ikeVersion:
+                          description: One of IKE_V1, IKE_V2, IKE_FLEX IKE version
+                            one of IKE_V1, IKE_V2, IKE_FLEX
+                          type: string
+                        tunnelDfPolicy:
+                          description: Policy for handling defragmentation bit. One
+                            of COPY, CLEAR Policy for handling defragmentation bit.
+                            One of COPY, CLEAR
+                          type: string
+                        tunnelDhGroups:
+                          description: Diffie-Hellman groups to be used is PFS is
+                            enabled. One of GROUP2, GROUP5, GROUP14, GROUP15, GROUP16,
+                            GROUP19, GROUP20, GROUP21 Diffie-Hellman groups to be
+                            used is PFS is enabled. One of GROUP2, GROUP5, GROUP14,
+                            GROUP15, GROUP16, GROUP19, GROUP20, GROUP21
+                          items:
+                            type: string
+                          type: array
+                        tunnelDigestAlgorithms:
+                          description: Digest algorithms to be used for message digest.
+                            One of SHA1, SHA2_256, SHA2_384, SHA2_512 Digest algorithms
+                            to be used for message digest. One of SHA1, SHA2_256,
+                            SHA2_384, SHA2_512
+                          items:
+                            type: string
+                          type: array
+                        tunnelEncryptionAlgorithms:
+                          description: Encryption algorithms to use in IPSec tunnel
+                            establishment. One of AES_128, AES_256, AES_GCM_128, AES_GCM_192,
+                            AES_GCM_256, NO_ENCRYPTION_AUTH_AES_GMAC_128, NO_ENCRYPTION_AUTH_AES_GMAC_192,
+                            NO_ENCRYPTION_AUTH_AES_GMAC_256, NO_ENCRYPTION Encryption
+                            algorithms to use in IPSec tunnel establishment. One of
+                            AES_128, AES_256, AES_GCM_128, AES_GCM_192, AES_GCM_256,
+                            NO_ENCRYPTION_AUTH_AES_GMAC_128, NO_ENCRYPTION_AUTH_AES_GMAC_192,
+                            NO_ENCRYPTION_AUTH_AES_GMAC_256, NO_ENCRYPTION
+                          items:
+                            type: string
+                          type: array
+                        tunnelPfsEnabled:
+                          description: PFS (Perfect Forward Secrecy) enabled or disabled.
+                            Perfect Forward Secrecy Enabled or Disabled. Default (enabled)
+                          type: boolean
+                        tunnelSaLifetime:
+                          description: Security Association life time in seconds Security
+                            Association life time (in seconds)
+                          type: number
+                      required:
+                      - ikeDhGroups
+                      - ikeEncryptionAlgorithms
+                      - ikeVersion
+                      - tunnelDhGroups
+                      - tunnelEncryptionAlgorithms
+                      type: object
+                    type: array
+                  vdc:
+                    description: The name of VDC to use, optional if defined at provider
+                      level
+                    type: string
+                required:
+                - localNetworks
+                - preSharedKeySecretRef
+                - remoteIpAddress
+                type: object
+              providerConfigRef:
+                default:
+                  name: default
+                description: ProviderConfigReference specifies how the provider that
+                  will be used to create, observe, update, and delete this managed
+                  resource should be configured.
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              providerRef:
+                description: 'ProviderReference specifies the provider that will be
+                  used to create, observe, update, and delete this managed resource.
+                  Deprecated: Please use ProviderConfigReference, i.e. `providerConfigRef`'
+                properties:
+                  name:
+                    description: Name of the referenced object.
+                    type: string
+                  policy:
+                    description: Policies for referencing.
+                    properties:
+                      resolution:
+                        default: Required
+                        description: Resolution specifies whether resolution of this
+                          reference is required. The default is 'Required', which
+                          means the reconcile will fail if the reference cannot be
+                          resolved. 'Optional' means this reference will be a no-op
+                          if it cannot be resolved.
+                        enum:
+                        - Required
+                        - Optional
+                        type: string
+                      resolve:
+                        description: Resolve specifies when this reference should
+                          be resolved. The default is 'IfNotPresent', which will attempt
+                          to resolve the reference only when the corresponding field
+                          is not present. Use 'Always' to resolve the reference on
+                          every reconcile.
+                        enum:
+                        - Always
+                        - IfNotPresent
+                        type: string
+                    type: object
+                required:
+                - name
+                type: object
+              publishConnectionDetailsTo:
+                description: PublishConnectionDetailsTo specifies the connection secret
+                  config which contains a name, metadata and a reference to secret
+                  store config to which any connection details for this managed resource
+                  should be written. Connection details frequently include the endpoint,
+                  username, and password required to connect to the managed resource.
+                properties:
+                  configRef:
+                    default:
+                      name: default
+                    description: SecretStoreConfigRef specifies which secret store
+                      config should be used for this ConnectionSecret.
+                    properties:
+                      name:
+                        description: Name of the referenced object.
+                        type: string
+                      policy:
+                        description: Policies for referencing.
+                        properties:
+                          resolution:
+                            default: Required
+                            description: Resolution specifies whether resolution of
+                              this reference is required. The default is 'Required',
+                              which means the reconcile will fail if the reference
+                              cannot be resolved. 'Optional' means this reference
+                              will be a no-op if it cannot be resolved.
+                            enum:
+                            - Required
+                            - Optional
+                            type: string
+                          resolve:
+                            description: Resolve specifies when this reference should
+                              be resolved. The default is 'IfNotPresent', which will
+                              attempt to resolve the reference only when the corresponding
+                              field is not present. Use 'Always' to resolve the reference
+                              on every reconcile.
+                            enum:
+                            - Always
+                            - IfNotPresent
+                            type: string
+                        type: object
+                    required:
+                    - name
+                    type: object
+                  metadata:
+                    description: Metadata is the metadata for connection secret.
+                    properties:
+                      annotations:
+                        additionalProperties:
+                          type: string
+                        description: Annotations are the annotations to be added to
+                          connection secret. - For Kubernetes secrets, this will be
+                          used as "metadata.annotations". - It is up to Secret Store
+                          implementation for others store types.
+                        type: object
+                      labels:
+                        additionalProperties:
+                          type: string
+                        description: Labels are the labels/tags to be added to connection
+                          secret. - For Kubernetes secrets, this will be used as "metadata.labels".
+                          - It is up to Secret Store implementation for others store
+                          types.
+                        type: object
+                      type:
+                        description: Type is the SecretType for the connection secret.
+                          - Only valid for Kubernetes Secret Stores.
+                        type: string
+                    type: object
+                  name:
+                    description: Name is the name of the connection secret.
+                    type: string
+                required:
+                - name
+                type: object
+              writeConnectionSecretToRef:
+                description: WriteConnectionSecretToReference specifies the namespace
+                  and name of a Secret to which any connection details for this managed
+                  resource should be written. Connection details frequently include
+                  the endpoint, username, and password required to connect to the
+                  managed resource. This field is planned to be replaced in a future
+                  release in favor of PublishConnectionDetailsTo. Currently, both
+                  could be set independently and connection details would be published
+                  to both without affecting each other.
+                properties:
+                  name:
+                    description: Name of the secret.
+                    type: string
+                  namespace:
+                    description: Namespace of the secret.
+                    type: string
+                required:
+                - name
+                - namespace
+                type: object
+            required:
+            - forProvider
+            type: object
+          status:
+            description: IpsecVPNTunnelStatus defines the observed state of IpsecVPNTunnel.
+            properties:
+              atProvider:
+                properties:
+                  id:
+                    type: string
+                  ikeFailReason:
+                    description: Provides more details of failure if the IKE service
+                      is not UP Provides more details of failure if the IKE service
+                      is not UP
+                    type: string
+                  ikeServiceStatus:
+                    description: Status for the actual IKE Session for the given tunnel
+                      Status for the actual IKE Session for the given tunnel
+                    type: string
+                  securityProfile:
+                    description: DEFAULT for system provided configuration or CUSTOM
+                      if security_profile_customization is set Security type which
+                      is use for IPsec VPN Tunnel. It will be 'DEFAULT' if nothing
+                      is customized and 'CUSTOM' if some changes are applied
+                    type: string
+                  status:
+                    description: Overall IPsec VPN Tunnel Status Overall IPsec VPN
+                      Tunnel Status
+                    type: string
+                type: object
+              conditions:
+                description: Conditions of the resource.
+                items:
+                  description: A Condition that may apply to a resource.
+                  properties:
+                    lastTransitionTime:
+                      description: LastTransitionTime is the last time this condition
+                        transitioned from one status to another.
+                      format: date-time
+                      type: string
+                    message:
+                      description: A Message containing details about this condition's
+                        last transition from one status to another, if any.
+                      type: string
+                    reason:
+                      description: A Reason for this condition's last transition from
+                        one status to another.
+                      type: string
+                    status:
+                      description: Status of this condition; is it currently True,
+                        False, or Unknown?
+                      type: string
+                    type:
+                      description: Type of this condition. At most one of each condition
+                        type may apply to a resource at any point in time.
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - reason
+                  - status
+                  - type
+                  type: object
+                type: array
+            type: object
+        required:
+        - spec
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []

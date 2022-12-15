@@ -62,6 +62,8 @@ var GroupMap = map[string]GroupKindCalculator{
 	"vcd_external_network":    ReplaceGroupWords("network", 0), // Group: network, Kind: ExternalNetwork
 	"vcd_external_network_v2": ReplaceGroupWords("network", 0), // Group: network, Kind: ExternalNetworkV2
 
+	// move global role ?
+
 }
 
 // KindMap contains kind string overrides.
@@ -73,5 +75,9 @@ var KindMap = map[string]string{
 	"vcd_org": "Org",
 
 	// NSXT
-	"vcd_nsxt_edgegateway": "EdgeGateway",
+	"vcd_nsxt_edgegateway":                          "EdgeGateway",
+	"vcd_nsxt_alb_edgegateway_service_engine_group": "ALBEdgeGatewayServiceEngineGroup",
+	"vcd_nsxt_edgegateway_bgp_configuration":        "EdgeGatewayBGPConfiguration",
+	"vcd_nsxt_edgegateway_bgp_ip_prefix_list":       "EdgeGatewayBGPIPPrefixList",
+	"vcd_nsxt_edgegateway_bgp_neighbor":             "EdgeGatewayBGPNeighbor",
 }

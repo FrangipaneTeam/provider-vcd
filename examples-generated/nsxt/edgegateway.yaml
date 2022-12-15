@@ -11,7 +11,9 @@ spec:
     description: Description
     externalNetworkId: ${data.vcd_external_network_v2.nsxt-ext-net.id}
     org: my-org
-    ownerId: ${data.vcd_org_vdc.vdc1.id}
+    ownerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_org_vdc
     subnet:
     - allocatedIps:
       - endAddress: 10.150.160.138

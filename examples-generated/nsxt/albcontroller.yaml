@@ -1,0 +1,21 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: ALBController
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/albcontroller
+  labels:
+    testing.upbound.io/example-name: first
+  name: first
+spec:
+  forProvider:
+    description: first alb controller
+    licenseType: ENTERPRISE
+    passwordSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    url: https://my.controller
+    username: admin
+
+---
+

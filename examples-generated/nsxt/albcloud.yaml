@@ -1,0 +1,19 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: ALBCloud
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/albcloud
+  labels:
+    testing.upbound.io/example-name: first
+  name: first
+spec:
+  forProvider:
+    controllerIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_alb_controller
+    description: NSX-T ALB Cloud
+    importableCloudId: ${data.vcd_nsxt_alb_importable_cloud.cld.id}
+    networkPoolId: ${data.vcd_nsxt_alb_importable_cloud.cld.network_pool_id}
+
+---
+

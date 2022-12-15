@@ -10,9 +10,11 @@ import (
 
 	"github.com/FrangipaneTeam/provider-vcd/config/catalog"
 	"github.com/FrangipaneTeam/provider-vcd/config/edgegateway"
+	"github.com/FrangipaneTeam/provider-vcd/config/global"
 	"github.com/FrangipaneTeam/provider-vcd/config/library"
 	"github.com/FrangipaneTeam/provider-vcd/config/network"
 	"github.com/FrangipaneTeam/provider-vcd/config/nsxt"
+	"github.com/FrangipaneTeam/provider-vcd/config/nsxv"
 	"github.com/FrangipaneTeam/provider-vcd/pkg/tools"
 	ujconfig "github.com/upbound/upjet/pkg/config"
 )
@@ -41,6 +43,8 @@ func GetProvider() *ujconfig.Provider {
 		library.Configure,
 		network.Configure,
 		nsxt.Configure,
+		global.Configure,
+		nsxv.Configure,
 	} {
 		configure(pc)
 	}

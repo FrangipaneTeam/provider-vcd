@@ -1,0 +1,24 @@
+apiVersion: nsxv.vcd.upbound.io/v1beta1
+kind: DHCPRelay
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxv/v1beta1/dhcprelay
+  labels:
+    testing.upbound.io/example-name: relay_config
+  name: relay-config
+spec:
+  forProvider:
+    edgeGatewaySelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    ipAddresses:
+    - 1.1.1.1
+    org: my-org
+    relayAgent:
+    - networkNameSelector:
+        matchLabels:
+          testing.upbound.io/example-name: test-routed[0]
+    vdc: my-org-vdc
+
+---
+

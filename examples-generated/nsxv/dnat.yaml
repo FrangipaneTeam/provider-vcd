@@ -1,0 +1,22 @@
+apiVersion: nsxv.vcd.upbound.io/v1beta1
+kind: Dnat
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxv/v1beta1/dnat
+  labels:
+    testing.upbound.io/example-name: web
+  name: web
+spec:
+  forProvider:
+    edgeGatewaySelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    networkName: my-external-network
+    networkType: ext
+    org: my-org
+    originalAddress: 1.1.1.1
+    translatedAddress: 10.10.10.15
+    vdc: my-vdc
+
+---
+

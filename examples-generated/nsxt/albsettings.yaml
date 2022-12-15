@@ -1,0 +1,18 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: ALBSettings
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/albsettings
+  labels:
+    testing.upbound.io/example-name: org1
+  name: org1
+spec:
+  forProvider:
+    edgeGatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vcd_nsxt_edgegateway
+    isActive: true
+    org: my-org
+
+---
+

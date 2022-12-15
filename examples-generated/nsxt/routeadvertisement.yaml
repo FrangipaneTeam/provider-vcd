@@ -1,0 +1,17 @@
+apiVersion: nsxt.vcd.upbound.io/v1beta1
+kind: RouteAdvertisement
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxt/v1beta1/routeadvertisement
+  labels:
+    testing.upbound.io/example-name: my_route_advertisement
+  name: my-route-advertisement
+spec:
+  forProvider:
+    enabled: true
+    subnets:
+    - 192.168.1.0/24
+    - 192.168.2.0/24
+
+---
+

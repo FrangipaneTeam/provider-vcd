@@ -1,0 +1,26 @@
+apiVersion: nsxv.vcd.upbound.io/v1beta1
+kind: FirewallRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: nsxv/v1beta1/firewallrule
+  labels:
+    testing.upbound.io/example-name: my-rule-1
+  name: my-rule-1
+spec:
+  forProvider:
+    destination:
+    - ipAddresses:
+      - ${data.vcd_edgegateway.mygw.default_external_network_ip}
+    edgeGatewaySelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    org: my-org
+    service:
+    - protocol: any
+    source:
+    - ipSets:
+      - ${vcd_ipset.test-ipset2.name}
+    vdc: my-vdc
+
+---
+

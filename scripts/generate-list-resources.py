@@ -107,7 +107,6 @@ percentageG = (countImplemented /
 #         print('\n')
 
 # Write list of resources in file
-print(linesImplementedPrint)
 with open('list-resources.md', 'w') as f:
     f.write('# Resources\n')
     f.write('\nLast update: ' + os.popen('date').read())
