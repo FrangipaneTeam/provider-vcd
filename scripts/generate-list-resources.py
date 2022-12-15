@@ -107,12 +107,14 @@ percentageG = (countImplemented /
 #         print('\n')
 
 # Write list of resources in file
+print(linesImplementedPrint)
 with open('list-resources.md', 'w') as f:
     f.write('# Resources\n')
     f.write('\nLast update: ' + os.popen('date').read())
     f.write('\n## Resources implemented: ' + str(countImplemented) + '/' + str((countImplemented + countNotImplemented)) +
             ' (' + str(round(percentageG, 2)) + '%)\n')
     for group in linesImplementedPrint:
+        linesImplementedPrint[group].sort()
         percentage = (len(linesImplementedPrint[group]) / (
             len(linesImplementedPrint[group]) + len(linesNotImplementedPrint[group]))) * 100
         f.write('### ' + group + ' (' + str(round(percentage, 2)) + '%)\n')
@@ -123,6 +125,7 @@ with open('list-resources.md', 'w') as f:
         for line in linesImplementedPrint[group]:
             f.write(line + '\n')
         for line in linesNotImplementedPrint[group]:
+            linesNotImplementedPrint[group].sort()
             f.write(line + '\n')
         f.write('\n')
     if len(linesDeprecatedPrint) > 0:
