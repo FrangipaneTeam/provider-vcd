@@ -16,6 +16,15 @@ func (l *AffinityRuleList) GetItems() []resource.Managed {
 	return items
 }
 
+// GetItems of this InsertedMediaList.
+func (l *InsertedMediaList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
 // GetItems of this InternalDiskList.
 func (l *InternalDiskList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
@@ -27,6 +36,15 @@ func (l *InternalDiskList) GetItems() []resource.Managed {
 
 // GetItems of this PlacementPolicyList.
 func (l *PlacementPolicyList) GetItems() []resource.Managed {
+	items := make([]resource.Managed, len(l.Items))
+	for i := range l.Items {
+		items[i] = &l.Items[i]
+	}
+	return items
+}
+
+// GetItems of this SecurityTagList.
+func (l *SecurityTagList) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

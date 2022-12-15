@@ -1,0 +1,25 @@
+apiVersion: rights.vcd.upbound.io/v1beta1
+kind: Bundle
+metadata:
+  annotations:
+    meta.upbound.io/example-id: rights/v1beta1/bundle
+  labels:
+    testing.upbound.io/example-name: new-rights-bundle
+  name: new-rights-bundle
+spec:
+  forProvider:
+    description: new rights bundle from CLI
+    publishToAllTenants: false
+    rights:
+    - 'Catalog: Add vApp from My Cloud'
+    - 'Catalog: Edit Properties'
+    - 'Catalog: View Private and Shared Catalogs'
+    - 'Organization vDC Compute Policy: View'
+    - 'vApp Template / Media: Edit'
+    - 'vApp Template / Media: View'
+    tenants:
+    - org1
+    - org2
+
+---
+

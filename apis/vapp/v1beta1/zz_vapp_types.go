@@ -29,10 +29,10 @@ type LeaseParameters struct {
 	StorageLeaseInSec *float64 `json:"storageLeaseInSec" tf:"storage_lease_in_sec,omitempty"`
 }
 
-type MetadataEntryObservation struct {
+type VappMetadataEntryObservation struct {
 }
 
-type MetadataEntryParameters struct {
+type VappMetadataEntryParameters struct {
 
 	// Domain for this metadata entry. true if it belongs to SYSTEM, false if it belongs to GENERAL.
 	// Domain for this metadata entry. true if it belongs to SYSTEM, false if it belongs to GENERAL
@@ -104,7 +104,7 @@ type VappParameters struct {
 	// A set of metadata entries to assign. See Metadata section for details.
 	// Metadata entries for the given vApp
 	// +kubebuilder:validation:Optional
-	MetadataEntry []MetadataEntryParameters `json:"metadataEntry,omitempty" tf:"metadata_entry,omitempty"`
+	MetadataEntry []VappMetadataEntryParameters `json:"metadataEntry,omitempty" tf:"metadata_entry,omitempty"`
 
 	// The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations
 	// The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organizations

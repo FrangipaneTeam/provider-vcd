@@ -1,0 +1,16 @@
+apiVersion: vm.vcd.upbound.io/v1beta1
+kind: SecurityTag
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vm/v1beta1/securitytag
+  labels:
+    testing.upbound.io/example-name: my_tag
+  name: my-tag
+spec:
+  forProvider:
+    vmIdsRefs:
+    - name: my-vm-one
+    - name: my-vm-two
+
+---
+

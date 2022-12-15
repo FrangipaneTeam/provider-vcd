@@ -1,0 +1,30 @@
+apiVersion: lb.vcd.upbound.io/v1beta1
+kind: VirtualServer
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1beta1/virtualserver
+  labels:
+    testing.upbound.io/example-name: http
+  name: http
+spec:
+  forProvider:
+    appProfileIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: http
+    appRuleIdsRefs:
+    - name: redirect
+    - name: language
+    edgeGatewaySelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    ipAddress: 1.1.1.1
+    org: my-org
+    port: 80
+    protocol: http
+    serverPoolIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: web-servers
+    vdc: my-org-vdc
+
+---
+

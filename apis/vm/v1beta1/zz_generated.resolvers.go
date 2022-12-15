@@ -13,6 +13,32 @@ import (
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
+// ResolveReferences of this SecurityTag.
+func (mg *SecurityTag) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var mrsp reference.MultiResolutionResponse
+	var err error
+
+	mrsp, err = r.ResolveMultiple(ctx, reference.MultiResolutionRequest{
+		CurrentValues: reference.FromPtrValues(mg.Spec.ForProvider.VMIds),
+		Extract:       reference.ExternalName(),
+		References:    mg.Spec.ForProvider.VMIdsRefs,
+		Selector:      mg.Spec.ForProvider.VMIdsSelector,
+		To: reference.To{
+			List:    &VMList{},
+			Managed: &VM{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.VMIds")
+	}
+	mg.Spec.ForProvider.VMIds = reference.ToPtrValues(mrsp.ResolvedValues)
+	mg.Spec.ForProvider.VMIdsRefs = mrsp.ResolvedReferences
+
+	return nil
+}
+
 // ResolveReferences of this VM.
 func (mg *VM) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)

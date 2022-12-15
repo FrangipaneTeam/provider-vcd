@@ -13,12 +13,17 @@ import (
 	catalog "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/catalog"
 	item "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/item"
 	media "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/media"
+	subscribedcatalog "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/subscribedcatalog"
 	vapptemplate "github.com/FrangipaneTeam/provider-vcd/internal/controller/catalog/vapptemplate"
 	edgegateway "github.com/FrangipaneTeam/provider-vcd/internal/controller/edgegateway/edgegateway"
 	settings "github.com/FrangipaneTeam/provider-vcd/internal/controller/edgegateway/settings"
 	vpn "github.com/FrangipaneTeam/provider-vcd/internal/controller/edgegateway/vpn"
 	role "github.com/FrangipaneTeam/provider-vcd/internal/controller/global/role"
-	certificate "github.com/FrangipaneTeam/provider-vcd/internal/controller/library/certificate"
+	appprofile "github.com/FrangipaneTeam/provider-vcd/internal/controller/lb/appprofile"
+	apprule "github.com/FrangipaneTeam/provider-vcd/internal/controller/lb/apprule"
+	serverpool "github.com/FrangipaneTeam/provider-vcd/internal/controller/lb/serverpool"
+	servicemonitor "github.com/FrangipaneTeam/provider-vcd/internal/controller/lb/servicemonitor"
+	virtualserver "github.com/FrangipaneTeam/provider-vcd/internal/controller/lb/virtualserver"
 	direct "github.com/FrangipaneTeam/provider-vcd/internal/controller/network/direct"
 	externalnetwork "github.com/FrangipaneTeam/provider-vcd/internal/controller/network/externalnetwork"
 	externalnetworkv2 "github.com/FrangipaneTeam/provider-vcd/internal/controller/network/externalnetworkv2"
@@ -59,8 +64,11 @@ import (
 	vdc "github.com/FrangipaneTeam/provider-vcd/internal/controller/org/vdc"
 	vdcaccesscontrol "github.com/FrangipaneTeam/provider-vcd/internal/controller/org/vdcaccesscontrol"
 	providerconfig "github.com/FrangipaneTeam/provider-vcd/internal/controller/providerconfig"
+	bundle "github.com/FrangipaneTeam/provider-vcd/internal/controller/rights/bundle"
+	rolerights "github.com/FrangipaneTeam/provider-vcd/internal/controller/rights/role"
 	accesscontrolvapp "github.com/FrangipaneTeam/provider-vcd/internal/controller/vapp/accesscontrol"
 	firewallrules "github.com/FrangipaneTeam/provider-vcd/internal/controller/vapp/firewallrules"
+	independentdisk "github.com/FrangipaneTeam/provider-vcd/internal/controller/vapp/independentdisk"
 	natrules "github.com/FrangipaneTeam/provider-vcd/internal/controller/vapp/natrules"
 	network "github.com/FrangipaneTeam/provider-vcd/internal/controller/vapp/network"
 	orgnetwork "github.com/FrangipaneTeam/provider-vcd/internal/controller/vapp/orgnetwork"
@@ -70,8 +78,10 @@ import (
 	org "github.com/FrangipaneTeam/provider-vcd/internal/controller/vcd/org"
 	groupvdc "github.com/FrangipaneTeam/provider-vcd/internal/controller/vdc/group"
 	affinityrule "github.com/FrangipaneTeam/provider-vcd/internal/controller/vm/affinityrule"
+	insertedmedia "github.com/FrangipaneTeam/provider-vcd/internal/controller/vm/insertedmedia"
 	internaldisk "github.com/FrangipaneTeam/provider-vcd/internal/controller/vm/internaldisk"
 	placementpolicy "github.com/FrangipaneTeam/provider-vcd/internal/controller/vm/placementpolicy"
+	securitytag "github.com/FrangipaneTeam/provider-vcd/internal/controller/vm/securitytag"
 	sizingpolicy "github.com/FrangipaneTeam/provider-vcd/internal/controller/vm/sizingpolicy"
 	vmvm "github.com/FrangipaneTeam/provider-vcd/internal/controller/vm/vm"
 )
@@ -84,12 +94,17 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		catalog.Setup,
 		item.Setup,
 		media.Setup,
+		subscribedcatalog.Setup,
 		vapptemplate.Setup,
 		edgegateway.Setup,
 		settings.Setup,
 		vpn.Setup,
 		role.Setup,
-		certificate.Setup,
+		appprofile.Setup,
+		apprule.Setup,
+		serverpool.Setup,
+		servicemonitor.Setup,
+		virtualserver.Setup,
 		direct.Setup,
 		externalnetwork.Setup,
 		externalnetworkv2.Setup,
@@ -130,8 +145,11 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		vdc.Setup,
 		vdcaccesscontrol.Setup,
 		providerconfig.Setup,
+		bundle.Setup,
+		rolerights.Setup,
 		accesscontrolvapp.Setup,
 		firewallrules.Setup,
+		independentdisk.Setup,
 		natrules.Setup,
 		network.Setup,
 		orgnetwork.Setup,
@@ -141,8 +159,10 @@ func Setup(mgr ctrl.Manager, o controller.Options) error {
 		org.Setup,
 		groupvdc.Setup,
 		affinityrule.Setup,
+		insertedmedia.Setup,
 		internaldisk.Setup,
 		placementpolicy.Setup,
+		securitytag.Setup,
 		sizingpolicy.Setup,
 		vmvm.Setup,
 	} {

@@ -1,0 +1,28 @@
+apiVersion: lb.vcd.upbound.io/v1beta1
+kind: ServiceMonitor
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1beta1/servicemonitor
+  labels:
+    testing.upbound.io/example-name: monitor
+  name: monitor
+spec:
+  forProvider:
+    edgeGatewaySelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    extension:
+      content-type: application/json
+      linespan: ""
+    interval: "5"
+    maxRetries: "3"
+    method: GET
+    org: my-org
+    send: '{"key": "value"}'
+    timeout: "20"
+    type: http
+    url: /health
+    vdc: my-org-vdc
+
+---
+

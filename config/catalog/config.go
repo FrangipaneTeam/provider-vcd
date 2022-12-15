@@ -41,4 +41,9 @@ func Configure(p *config.Provider) {
 			Type: "Catalog",
 		}
 	})
+
+	// vcd_subscribed_catalog
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/subscribed_catalog
+	p.AddResourceConfigurator("vcd_subscribed_catalog", func(r *config.Resource) {
+	})
 }

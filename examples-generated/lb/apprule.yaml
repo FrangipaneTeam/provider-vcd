@@ -1,0 +1,20 @@
+apiVersion: lb.vcd.upbound.io/v1beta1
+kind: AppRule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1beta1/apprule
+  labels:
+    testing.upbound.io/example-name: example-one
+  name: example-one
+spec:
+  forProvider:
+    edgeGatewaySelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    org: my-org
+    script: acl vmware_page url_beg / vmware redirect location https://www.vmware.com/
+      ifvmware_page
+    vdc: my-org-vdc
+
+---
+

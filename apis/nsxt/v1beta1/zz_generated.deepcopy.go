@@ -1276,16 +1276,6 @@ func (in *ALBVirtualServiceParameters) DeepCopyInto(out *ALBVirtualServiceParame
 		*out = new(string)
 		**out = **in
 	}
-	if in.CACertificateIDRef != nil {
-		in, out := &in.CACertificateIDRef, &out.CACertificateIDRef
-		*out = new(v1.Reference)
-		(*in).DeepCopyInto(*out)
-	}
-	if in.CACertificateIDSelector != nil {
-		in, out := &in.CACertificateIDSelector, &out.CACertificateIDSelector
-		*out = new(v1.Selector)
-		(*in).DeepCopyInto(*out)
-	}
 	if in.Description != nil {
 		in, out := &in.Description, &out.Description
 		*out = new(string)

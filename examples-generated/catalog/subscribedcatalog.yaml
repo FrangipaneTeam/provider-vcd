@@ -1,0 +1,22 @@
+apiVersion: catalog.vcd.upbound.io/v1beta1
+kind: SubscribedCatalog
+metadata:
+  annotations:
+    meta.upbound.io/example-id: catalog/v1beta1/subscribedcatalog
+  labels:
+    testing.upbound.io/example-name: subscriber
+  name: subscriber
+spec:
+  forProvider:
+    deleteForce: "true"
+    deleteRecursive: "true"
+    makeLocalCopy: true
+    org: my-org
+    subscriptionPasswordSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    subscriptionUrl: ${var.subscription_url}
+
+---
+

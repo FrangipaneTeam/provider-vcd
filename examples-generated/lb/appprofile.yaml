@@ -1,0 +1,19 @@
+apiVersion: lb.vcd.upbound.io/v1beta1
+kind: AppProfile
+metadata:
+  annotations:
+    meta.upbound.io/example-id: lb/v1beta1/appprofile
+  labels:
+    testing.upbound.io/example-name: tcp
+  name: tcp
+spec:
+  forProvider:
+    edgeGatewaySelector:
+      matchLabels:
+        testing.upbound.io/example-name: example
+    org: my-org
+    type: tcp
+    vdc: my-org-vdc
+
+---
+

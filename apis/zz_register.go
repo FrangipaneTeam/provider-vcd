@@ -13,11 +13,12 @@ import (
 	v1beta1 "github.com/FrangipaneTeam/provider-vcd/apis/catalog/v1beta1"
 	v1beta1edgegateway "github.com/FrangipaneTeam/provider-vcd/apis/edgegateway/v1beta1"
 	v1beta1global "github.com/FrangipaneTeam/provider-vcd/apis/global/v1beta1"
-	v1beta1library "github.com/FrangipaneTeam/provider-vcd/apis/library/v1beta1"
+	v1beta1lb "github.com/FrangipaneTeam/provider-vcd/apis/lb/v1beta1"
 	v1beta1network "github.com/FrangipaneTeam/provider-vcd/apis/network/v1beta1"
 	v1beta1nsxt "github.com/FrangipaneTeam/provider-vcd/apis/nsxt/v1beta1"
 	v1beta1nsxv "github.com/FrangipaneTeam/provider-vcd/apis/nsxv/v1beta1"
 	v1beta1org "github.com/FrangipaneTeam/provider-vcd/apis/org/v1beta1"
+	v1beta1rights "github.com/FrangipaneTeam/provider-vcd/apis/rights/v1beta1"
 	v1alpha1 "github.com/FrangipaneTeam/provider-vcd/apis/v1alpha1"
 	v1beta1apis "github.com/FrangipaneTeam/provider-vcd/apis/v1beta1"
 	v1beta1vapp "github.com/FrangipaneTeam/provider-vcd/apis/vapp/v1beta1"
@@ -32,11 +33,12 @@ func init() {
 		v1beta1.SchemeBuilder.AddToScheme,
 		v1beta1edgegateway.SchemeBuilder.AddToScheme,
 		v1beta1global.SchemeBuilder.AddToScheme,
-		v1beta1library.SchemeBuilder.AddToScheme,
+		v1beta1lb.SchemeBuilder.AddToScheme,
 		v1beta1network.SchemeBuilder.AddToScheme,
 		v1beta1nsxt.SchemeBuilder.AddToScheme,
 		v1beta1nsxv.SchemeBuilder.AddToScheme,
 		v1beta1org.SchemeBuilder.AddToScheme,
+		v1beta1rights.SchemeBuilder.AddToScheme,
 		v1alpha1.SchemeBuilder.AddToScheme,
 		v1beta1apis.SchemeBuilder.AddToScheme,
 		v1beta1vapp.SchemeBuilder.AddToScheme,

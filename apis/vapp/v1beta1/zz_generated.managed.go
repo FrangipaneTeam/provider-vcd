@@ -139,6 +139,72 @@ func (mg *FirewallRules) SetWriteConnectionSecretToReference(r *xpv1.SecretRefer
 	mg.Spec.WriteConnectionSecretToReference = r
 }
 
+// GetCondition of this IndependentDisk.
+func (mg *IndependentDisk) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+	return mg.Status.GetCondition(ct)
+}
+
+// GetDeletionPolicy of this IndependentDisk.
+func (mg *IndependentDisk) GetDeletionPolicy() xpv1.DeletionPolicy {
+	return mg.Spec.DeletionPolicy
+}
+
+// GetProviderConfigReference of this IndependentDisk.
+func (mg *IndependentDisk) GetProviderConfigReference() *xpv1.Reference {
+	return mg.Spec.ProviderConfigReference
+}
+
+/*
+GetProviderReference of this IndependentDisk.
+Deprecated: Use GetProviderConfigReference.
+*/
+func (mg *IndependentDisk) GetProviderReference() *xpv1.Reference {
+	return mg.Spec.ProviderReference
+}
+
+// GetPublishConnectionDetailsTo of this IndependentDisk.
+func (mg *IndependentDisk) GetPublishConnectionDetailsTo() *xpv1.PublishConnectionDetailsTo {
+	return mg.Spec.PublishConnectionDetailsTo
+}
+
+// GetWriteConnectionSecretToReference of this IndependentDisk.
+func (mg *IndependentDisk) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+	return mg.Spec.WriteConnectionSecretToReference
+}
+
+// SetConditions of this IndependentDisk.
+func (mg *IndependentDisk) SetConditions(c ...xpv1.Condition) {
+	mg.Status.SetConditions(c...)
+}
+
+// SetDeletionPolicy of this IndependentDisk.
+func (mg *IndependentDisk) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+	mg.Spec.DeletionPolicy = r
+}
+
+// SetProviderConfigReference of this IndependentDisk.
+func (mg *IndependentDisk) SetProviderConfigReference(r *xpv1.Reference) {
+	mg.Spec.ProviderConfigReference = r
+}
+
+/*
+SetProviderReference of this IndependentDisk.
+Deprecated: Use SetProviderConfigReference.
+*/
+func (mg *IndependentDisk) SetProviderReference(r *xpv1.Reference) {
+	mg.Spec.ProviderReference = r
+}
+
+// SetPublishConnectionDetailsTo of this IndependentDisk.
+func (mg *IndependentDisk) SetPublishConnectionDetailsTo(r *xpv1.PublishConnectionDetailsTo) {
+	mg.Spec.PublishConnectionDetailsTo = r
+}
+
+// SetWriteConnectionSecretToReference of this IndependentDisk.
+func (mg *IndependentDisk) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+	mg.Spec.WriteConnectionSecretToReference = r
+}
+
 // GetCondition of this NATRules.
 func (mg *NATRules) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)

@@ -7,8 +7,7 @@ package v1beta1
 
 import (
 	"context"
-	v1beta1 "github.com/FrangipaneTeam/provider-vcd/apis/library/v1beta1"
-	v1beta11 "github.com/FrangipaneTeam/provider-vcd/apis/org/v1beta1"
+	v1beta1 "github.com/FrangipaneTeam/provider-vcd/apis/org/v1beta1"
 	reference "github.com/crossplane/crossplane-runtime/pkg/reference"
 	errors "github.com/pkg/errors"
 	client "sigs.k8s.io/controller-runtime/pkg/client"
@@ -168,22 +167,6 @@ func (mg *ALBVirtualService) ResolveReferences(ctx context.Context, c client.Rea
 	var err error
 
 	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
-		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.CACertificateID),
-		Extract:      reference.ExternalName(),
-		Reference:    mg.Spec.ForProvider.CACertificateIDRef,
-		Selector:     mg.Spec.ForProvider.CACertificateIDSelector,
-		To: reference.To{
-			List:    &v1beta1.CertificateList{},
-			Managed: &v1beta1.Certificate{},
-		},
-	})
-	if err != nil {
-		return errors.Wrap(err, "mg.Spec.ForProvider.CACertificateID")
-	}
-	mg.Spec.ForProvider.CACertificateID = reference.ToPtrValue(rsp.ResolvedValue)
-	mg.Spec.ForProvider.CACertificateIDRef = rsp.ResolvedReference
-
-	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
 		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.EdgeGatewayID),
 		Extract:      reference.ExternalName(),
 		Reference:    mg.Spec.ForProvider.EdgeGatewayIDRef,
@@ -300,8 +283,8 @@ func (mg *DistributedFirewall) ResolveReferences(ctx context.Context, c client.R
 		Reference:    mg.Spec.ForProvider.VdcGroupIDRef,
 		Selector:     mg.Spec.ForProvider.VdcGroupIDSelector,
 		To: reference.To{
-			List:    &v1beta11.GroupList{},
-			Managed: &v1beta11.Group{},
+			List:    &v1beta1.GroupList{},
+			Managed: &v1beta1.Group{},
 		},
 	})
 	if err != nil {
@@ -326,8 +309,8 @@ func (mg *DynamicSecurityGroup) ResolveReferences(ctx context.Context, c client.
 		Reference:    mg.Spec.ForProvider.VdcGroupIDRef,
 		Selector:     mg.Spec.ForProvider.VdcGroupIDSelector,
 		To: reference.To{
-			List:    &v1beta11.GroupList{},
-			Managed: &v1beta11.Group{},
+			List:    &v1beta1.GroupList{},
+			Managed: &v1beta1.Group{},
 		},
 	})
 	if err != nil {
@@ -352,8 +335,8 @@ func (mg *EdgeGateway) ResolveReferences(ctx context.Context, c client.Reader) e
 		Reference:    mg.Spec.ForProvider.OwnerIDRef,
 		Selector:     mg.Spec.ForProvider.OwnerIDSelector,
 		To: reference.To{
-			List:    &v1beta11.GroupList{},
-			Managed: &v1beta11.Group{},
+			List:    &v1beta1.GroupList{},
+			Managed: &v1beta1.Group{},
 		},
 	})
 	if err != nil {
@@ -624,8 +607,8 @@ func (mg *NetworkImported) ResolveReferences(ctx context.Context, c client.Reade
 		Reference:    mg.Spec.ForProvider.OwnerIDRef,
 		Selector:     mg.Spec.ForProvider.OwnerIDSelector,
 		To: reference.To{
-			List:    &v1beta11.GroupList{},
-			Managed: &v1beta11.Group{},
+			List:    &v1beta1.GroupList{},
+			Managed: &v1beta1.Group{},
 		},
 	})
 	if err != nil {

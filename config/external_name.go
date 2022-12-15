@@ -17,7 +17,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	"vcd_catalog_media":          TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.catalog }}.{{ .parameters.name }}"),
 	"vcd_catalog_vapp_template":  TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.catalog }}.{{ .parameters.name }}"),
 
-	"vcd_library_certificate": config.TemplatedStringAsIdentifier("alias", "{{ .parameters.org }}.{{ .external_name }}"),
+	"vcd_certificate_library": config.TemplatedStringAsIdentifier("alias", "{{ .parameters.org }}.{{ .external_name }}"),
 
 	"vcd_edgegateway":          config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .external_name }}"),
 	"vcd_edgegateway_settings": config.TemplatedStringAsIdentifier("edge_gateway_name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
@@ -242,6 +242,50 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 	// vcd_vdc_group
 	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vdc_group
 	"vcd_vdc_group": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .external_name }}"),
+
+	// vcd_lb_app_profile
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/lb_app_profile
+	"vcd_lb_app_profile": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.edge_gateway }}.{{ .external_name }}"),
+
+	// vcd_lb_app_rule
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/lb_app_rule
+	"vcd_lb_app_rule": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.edge_gateway }}.{{ .external_name }}"),
+
+	// vcd_lb_server_pool
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/lb_server_pool
+	"vcd_lb_server_pool": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.edge_gateway }}.{{ .external_name }}"),
+
+	// vcd_lb_service_monitor
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/lb_service_monitor
+	"vcd_lb_service_monitor": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.edge_gateway }}.{{ .external_name }}"),
+
+	// vcd_lb_virtual_server
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/lb_virtual_server
+	"vcd_lb_virtual_server": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.edge_gateway }}.{{ .external_name }}"),
+
+	// vcd_independent_disk
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/independent_disk
+	"vcd_independent_disk": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .external_name }}"),
+
+	// vcd_inserted_media
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/inserted_media
+	"vcd_inserted_media": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.{{ .parameters.catalog }}.{{ .parameters.vapp_name }}.{{ .external_name }}"),
+
+	// vcd_subscribed_catalog
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/subscribed_catalog
+	"vcd_subscribed_catalog": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .external_name }}"),
+
+	// vcd_rights_bundle
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/rights_bundle
+	"vcd_rights_bundle": config.NameAsIdentifier,
+
+	// vcd_role
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/role
+	"vcd_role": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .external_name }}"),
+
+	// vcd_security_tag
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/security_tag
+	"vcd_security_tag": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .external_name }}"),
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

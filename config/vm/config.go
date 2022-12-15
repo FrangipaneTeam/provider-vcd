@@ -42,4 +42,22 @@ func Configure(p *config.Provider) {
 	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vm_placement_policy
 	p.AddResourceConfigurator("vcd_vm_placement_policy", func(r *config.Resource) {
 	})
+
+	// vcd_independent_disk
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/independent_disk
+	p.AddResourceConfigurator("vcd_independent_disk", func(r *config.Resource) {
+	})
+
+	// vcd_inserted_media
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/inserted_media
+	p.AddResourceConfigurator("vcd_inserted_media", func(r *config.Resource) {
+	})
+
+	// vcd_security_tag
+	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/security_tag
+	p.AddResourceConfigurator("vcd_security_tag", func(r *config.Resource) {
+		r.References["vm_ids"] = config.Reference{
+			Type: tools.GenerateType("vm", "VM"),
+		}
+	})
 }

@@ -1,0 +1,22 @@
+apiVersion: rights.vcd.upbound.io/v1beta1
+kind: Role
+metadata:
+  annotations:
+    meta.upbound.io/example-id: rights/v1beta1/role
+  labels:
+    testing.upbound.io/example-name: new-role
+  name: new-role
+spec:
+  forProvider:
+    description: new role from CLI
+    org: my-org
+    rights:
+    - 'Catalog: Add vApp from My Cloud'
+    - 'Catalog: Edit Properties'
+    - 'Catalog: View Private and Shared Catalogs'
+    - 'Organization vDC Compute Policy: View'
+    - 'vApp Template / Media: Edit'
+    - 'vApp Template / Media: View'
+
+---
+

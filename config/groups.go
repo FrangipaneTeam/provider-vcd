@@ -70,6 +70,12 @@ var GroupMap = map[string]GroupKindCalculator{
 	// VAPP
 	"vcd_vapp": ReplaceGroupWords("vapp", 0), // Group: vapp, Kind: VApp
 
+	"vcd_independent_disk":   ReplaceGroupWords("vapp", 0),    // Group: vapp, Kind: IndependentDisk
+	"vcd_inserted_media":     ReplaceGroupWords("vm", 0),      // Group: vm, Kind: InsertedMedia
+	"vcd_subscribed_catalog": ReplaceGroupWords("catalog", 0), // Group: catalog, Kind: SubscribedCatalog
+	"vcd_role":               ReplaceGroupWords("rights", 0),  // Group: rights, Kind: Role
+	"vcd_security_tag":       ReplaceGroupWords("vm", 0),      // Group: vm, Kind: SecurityTag
+
 }
 
 // KindMap contains kind string overrides.

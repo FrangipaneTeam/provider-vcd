@@ -82,9 +82,9 @@ func Configure(p *config.Provider) {
 		r.References["virtual_ip_address"] = config.Reference{
 			Type: "EdgeGateway",
 		}
-		r.References["ca_certificate_id"] = config.Reference{
-			Type: tools.GenerateType("library", "Certificate"),
-		}
+		// r.References["ca_certificate_id"] = config.Reference{
+		// 	Type: tools.GenerateType("library", "Certificate"),
+		// }
 	})
 
 	// vcd_nsxt_app_port_profile

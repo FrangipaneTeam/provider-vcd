@@ -11,10 +11,12 @@ import (
 	"github.com/FrangipaneTeam/provider-vcd/config/catalog"
 	"github.com/FrangipaneTeam/provider-vcd/config/edgegateway"
 	"github.com/FrangipaneTeam/provider-vcd/config/global"
+	"github.com/FrangipaneTeam/provider-vcd/config/lb"
 	"github.com/FrangipaneTeam/provider-vcd/config/library"
 	"github.com/FrangipaneTeam/provider-vcd/config/network"
 	"github.com/FrangipaneTeam/provider-vcd/config/nsxt"
 	"github.com/FrangipaneTeam/provider-vcd/config/nsxv"
+	"github.com/FrangipaneTeam/provider-vcd/config/rights"
 	"github.com/FrangipaneTeam/provider-vcd/config/vapp"
 	"github.com/FrangipaneTeam/provider-vcd/config/vdc"
 	"github.com/FrangipaneTeam/provider-vcd/config/vm"
@@ -51,6 +53,8 @@ func GetProvider() *ujconfig.Provider {
 		vm.Configure,
 		vapp.Configure,
 		vdc.Configure,
+		lb.Configure,
+		rights.Configure,
 	} {
 		configure(pc)
 	}

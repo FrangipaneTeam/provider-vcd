@@ -27,17 +27,8 @@ type ALBVirtualServiceParameters struct {
 	// ID reference of CA certificate. Required when application_profile_type is HTTPS
 	// or L4_TLS
 	// Optional certificate ID to use for exposing service
-	// +crossplane:generate:reference:type=github.com/FrangipaneTeam/provider-vcd/apis/library/v1beta1.Certificate
 	// +kubebuilder:validation:Optional
 	CACertificateID *string `json:"caCertificateId,omitempty" tf:"ca_certificate_id,omitempty"`
-
-	// Reference to a Certificate in library to populate caCertificateId.
-	// +kubebuilder:validation:Optional
-	CACertificateIDRef *v1.Reference `json:"caCertificateIdRef,omitempty" tf:"-"`
-
-	// Selector for a Certificate in library to populate caCertificateId.
-	// +kubebuilder:validation:Optional
-	CACertificateIDSelector *v1.Selector `json:"caCertificateIdSelector,omitempty" tf:"-"`
 
 	// An optional description NSX-T ALB Virtual Service
 	// Description of ALB Virtual Service
