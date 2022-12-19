@@ -12,10 +12,10 @@ import (
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
 	"vcd_catalog":                TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.name }}"),
-	"vcd_catalog_access_control": config.TemplatedStringAsIdentifier("catalog_id", "{{ .parameters.org }}.{{ .externam_name }}"),
+	"vcd_catalog_access_control": TemplatedStringAsIdentifierWithNoName("{{ .parameters.catalog_id }}"),
 	"vcd_catalog_item":           TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.catalog }}.{{ .parameters.name }}"),
 	"vcd_catalog_media":          TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.catalog }}.{{ .parameters.name }}"),
-	"vcd_catalog_vapp_template":  TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.catalog }}.{{ .parameters.name }}"),
+	"vcd_catalog_vapp_template":  TemplatedStringAsIdentifierWithNoName("{{ .setup.configuration.org }}.{{ .parameters.catalog_id }}.{{ .parameters.name }}"),
 
 	"vcd_certificate_library": config.TemplatedStringAsIdentifier("alias", "{{ .parameters.org }}.{{ .external_name }}"),
 

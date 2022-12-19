@@ -37,6 +37,10 @@ type SubscribedCatalogObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// (v3.8.1+) Indicates if this catalog was created in the current organization.
+	// True if this catalog belongs to the current organization.
+	IsLocal *bool `json:"isLocal,omitempty" tf:"is_local,omitempty"`
+
 	// Indicates if this catalog is available for subscription. (Always false)
 	// True if this catalog is published. (Always false)
 	IsPublished *bool `json:"isPublished,omitempty" tf:"is_published,omitempty"`

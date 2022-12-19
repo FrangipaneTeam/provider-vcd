@@ -4,29 +4,27 @@ metadata:
   annotations:
     meta.upbound.io/example-id: catalog/v1beta1/vapptemplate
   labels:
-    testing.upbound.io/example-name: myNewVappTemplate
-  name: mynewvapptemplate
+    testing.upbound.io/example-name: ubuntu-server
+  name: ubuntu-server
 spec:
   forProvider:
     catalogIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: vcd_catalog
-    description: new vapp template
+        testing.upbound.io/example-name: crossplaneCatalog
+    name: UbuntuServer
+    ovfUrl: https://raw.githubusercontent.com/canonical/cloud-init/main/doc/sources/ovf/example/ubuntu-server.ovf
+    uploadPieceSize: 10
     metadataEntry:
-    - isSystem: "false"
+    - isSystem: false
       key: license
       type: MetadataStringValue
       userAccess: READWRITE
       value: public
-    - isSystem: "false"
+    - isSystem: false
       key: version
       type: MetadataStringValue
       userAccess: READWRITE
       value: v1
-    name: my ova
-    org: my-org
-    ovaPath: /home/user/file.ova
-    uploadPieceSize: 10
 
 ---
 

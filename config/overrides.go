@@ -17,15 +17,15 @@ func KnownReferencers() config.ResourceOption { //nolint:gocyclo
 			}
 			switch k {
 			// org is a organization name.
-			case "org":
-				r.References[k] = config.Reference{
-					Type: tools.GenerateType("org", "Org"),
-				}
+			// case "org":
+			// 	r.References[k] = config.Reference{
+			// 		Type: tools.GenerateType("org", "Org"),
+			// 	}
 			// vdc is a virtual data center name.
-			case "vdc":
-				r.References[k] = config.Reference{
-					Type: tools.GenerateType("vdc", "Vdc"),
-				}
+			// case "vdc":
+			// 	r.References[k] = config.Reference{
+			// 		Type: tools.GenerateType("vdc", "Vdc"),
+			// 	}
 			}
 		}
 	}

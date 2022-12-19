@@ -24,6 +24,20 @@ type AccessControlObservation struct {
 
 type AccessControlParameters struct {
 
+	// A unique identifier for the Catalog.
+	// The ID of Catalog to use
+	// +crossplane:generate:reference:type=Catalog
+	// +kubebuilder:validation:Optional
+	CatalogID *string `json:"catalogId,omitempty" tf:"catalog_id,omitempty"`
+
+	// Reference to a Catalog to populate catalogId.
+	// +kubebuilder:validation:Optional
+	CatalogIDRef *v1.Reference `json:"catalogIdRef,omitempty" tf:"-"`
+
+	// Selector for a Catalog to populate catalogId.
+	// +kubebuilder:validation:Optional
+	CatalogIDSelector *v1.Selector `json:"catalogIdSelector,omitempty" tf:"-"`
+
 	// Access level when the Catalog is shared with everyone (it can only be set to
 	// ReadOnly). Required if shared_with_everyone is set.
 	// Access level when the Catalog is shared with everyone (only ReadOnly is available). Required when shared_with_everyone is set

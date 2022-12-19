@@ -2,12 +2,12 @@
 ## catalog
 |Kind|CRD|Tested|
 |---|---|---|
-|AccessControl|AccessControl.catalog.vcd.upbound.io/v1beta1|:x:|
-|Catalog|Catalog.catalog.vcd.upbound.io/v1beta1|:x:|
+|AccessControl|AccessControl.catalog.vcd.upbound.io/v1beta1|:white_check_mark:|
+|Catalog|Catalog.catalog.vcd.upbound.io/v1beta1|:white_check_mark:|
 |Item|Item.catalog.vcd.upbound.io/v1beta1|:x:|
 |Media|Media.catalog.vcd.upbound.io/v1beta1|:x:|
 |SubscribedCatalog|SubscribedCatalog.catalog.vcd.upbound.io/v1beta1|:x:|
-|VappTemplate|VappTemplate.catalog.vcd.upbound.io/v1beta1|:x:|
+|VappTemplate|VappTemplate.catalog.vcd.upbound.io/v1beta1|:white_check_mark:|
 
 ## edgegateway
 |Kind|CRD|Tested|
@@ -33,7 +33,7 @@
 ## network
 |Kind|CRD|Tested|
 |---|---|---|
-|Direct|Direct.network.vcd.upbound.io/v1beta1|:x:|
+|Direct|Direct.network.vcd.upbound.io/v1beta1|:white_check_mark:|
 |ExternalNetwork|ExternalNetwork.network.vcd.upbound.io/v1beta1|:x:|
 |ExternalNetworkV2|ExternalNetworkV2.network.vcd.upbound.io/v1beta1|:x:|
 |Isolated|Isolated.network.vcd.upbound.io/v1beta1|:x:|

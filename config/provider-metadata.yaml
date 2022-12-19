@@ -62,6 +62,7 @@ resources:
             delete_force: '- (Required) When destroying use delete_force=true with delete_recursive=true to remove a catalog and any objects it contains, regardless of their state'
             delete_recursive: '- (Required) When destroying use delete_recursive=True to remove the catalog and any objects it contains that are in a state that normally allows removal'
             description: '- (Optional) Description of catalog'
+            is_local: '- (v3.8.1+) Indicates if this catalog was created in the current organization.'
             is_published: '- (v3.6+) Indicates if this catalog is shared to all organizations.'
             is_shared: '- (v3.6+) Indicates if the catalog is shared.'
             is_system: '- (Required) Domain for this metadata entry. true if it belongs to SYSTEM, false if it belongs to GENERAL.'
@@ -72,7 +73,10 @@ resources:
             name: '- (Required) Catalog name'
             number_of_media: '- (v3.6+) Number of media items available in this catalog.'
             number_of_vapp_templates: '- (v3.6+) Number of vApp templates available in this catalog.'
-            org: '- (Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations'
+            org: |-
+                - (Optional) The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organizations.
+                When using a catalog shared from another organization, this field must have the name of that one, not the current one.
+                If you don't know the name of the sharing org, and put the current one, an error message will list the possible names.
             owner_name: '- (v3.6+) Owner of the catalog.'
             password: '- (Optional, v3.6+) An optional password to access the catalog. Only ASCII characters are allowed in a valid password.'
             preserve_identity_information: '- (Optional, v3.6+) Enable include BIOS UUIDs and MAC addresses in the downloaded OVF package. Preserving the identity information limits the portability of the package, and you should use it only when necessary. Default is false.'
@@ -5139,6 +5143,7 @@ resources:
             description: '-  Description of catalog. This is inherited from the publishing catalog and updated on sync.'
             failed_tasks: '- List of synchronization tasks that are have failed. They can refer to the catalog or any of its catalog items.'
             href: '- the catalog''s Hyper reference.'
+            is_local: '- (v3.8.1+) Indicates if this catalog was created in the current organization.'
             is_published: '- Indicates if this catalog is available for subscription. (Always false)'
             is_shared: '- Indicates if the catalog is shared.'
             make_local_copy: |-

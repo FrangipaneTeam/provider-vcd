@@ -12,6 +12,58 @@ import (
 	client "sigs.k8s.io/controller-runtime/pkg/client"
 )
 
+// ResolveReferences of this AccessControl.
+func (mg *AccessControl) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.CatalogID),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.CatalogIDRef,
+		Selector:     mg.Spec.ForProvider.CatalogIDSelector,
+		To: reference.To{
+			List:    &CatalogList{},
+			Managed: &Catalog{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.CatalogID")
+	}
+	mg.Spec.ForProvider.CatalogID = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.CatalogIDRef = rsp.ResolvedReference
+
+	return nil
+}
+
+// ResolveReferences of this Media.
+func (mg *Media) ResolveReferences(ctx context.Context, c client.Reader) error {
+	r := reference.NewAPIResolver(c, mg)
+
+	var rsp reference.ResolutionResponse
+	var err error
+
+	rsp, err = r.Resolve(ctx, reference.ResolutionRequest{
+		CurrentValue: reference.FromPtrValue(mg.Spec.ForProvider.Catalog),
+		Extract:      reference.ExternalName(),
+		Reference:    mg.Spec.ForProvider.CatalogRef,
+		Selector:     mg.Spec.ForProvider.CatalogSelector,
+		To: reference.To{
+			List:    &CatalogList{},
+			Managed: &Catalog{},
+		},
+	})
+	if err != nil {
+		return errors.Wrap(err, "mg.Spec.ForProvider.Catalog")
+	}
+	mg.Spec.ForProvider.Catalog = reference.ToPtrValue(rsp.ResolvedValue)
+	mg.Spec.ForProvider.CatalogRef = rsp.ResolvedReference
+
+	return nil
+}
+
 // ResolveReferences of this VappTemplate.
 func (mg *VappTemplate) ResolveReferences(ctx context.Context, c client.Reader) error {
 	r := reference.NewAPIResolver(c, mg)

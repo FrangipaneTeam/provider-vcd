@@ -28,6 +28,10 @@ type CatalogObservation struct {
 
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
+	// (v3.8.1+) Indicates if this catalog was created in the current organization.
+	// True if this catalog belongs to the current organization.
+	IsLocal *bool `json:"isLocal,omitempty" tf:"is_local,omitempty"`
+
 	// (v3.6+) Indicates if this catalog is shared to all organizations.
 	// True if this catalog is published.
 	IsPublished *bool `json:"isPublished,omitempty" tf:"is_published,omitempty"`
@@ -100,7 +104,9 @@ type CatalogParameters struct {
 	// +kubebuilder:validation:Required
 	Name *string `json:"name" tf:"name,omitempty"`
 
-	// The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organisations
+	// The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organizations.
+	// When using a catalog shared from another organization, this field must have the name of that one, not the current one.
+	// If you don't know the name of the sharing org, and put the current one, an error message will list the possible names.
 	// The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organizations
 	// +kubebuilder:validation:Optional
 	Org *string `json:"org,omitempty" tf:"org,omitempty"`

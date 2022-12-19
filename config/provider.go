@@ -38,6 +38,7 @@ func GetProvider() *ujconfig.Provider {
 			ExternalNameConfigurations(),
 			defaultVersion(),
 			GroupKindOverrides(),
+			KnownReferencers(),
 			KindOverrides(),
 		))
 
@@ -60,5 +61,6 @@ func GetProvider() *ujconfig.Provider {
 	}
 
 	pc.ConfigureResources()
+
 	return pc
 }

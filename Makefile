@@ -4,11 +4,11 @@
 PROJECT_NAME := provider-vcd
 PROJECT_REPO := github.com/FrangipaneTeam/$(PROJECT_NAME)
 
-export TERRAFORM_VERSION := 1.3.3
+export TERRAFORM_VERSION := 1.3.6
 
 export TERRAFORM_PROVIDER_SOURCE := vmware/vcd
 export TERRAFORM_PROVIDER_REPO := https://github.com/vmware/terraform-provider-vcd
-export TERRAFORM_PROVIDER_VERSION := 3.8.0
+export TERRAFORM_PROVIDER_VERSION := 3.8.1
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME := terraform-provider-vcd
 export TERRAFORM_NATIVE_PROVIDER_BINARY := terraform-provider-vcd_v3.8.0_x5
 export TERRAFORM_DOCS_PATH := website/docs/r

@@ -81,8 +81,17 @@ type MediaParameters struct {
 
 	// The name of the catalog where to upload media file
 	// catalog name where upload the Media file
-	// +kubebuilder:validation:Required
-	Catalog *string `json:"catalog" tf:"catalog,omitempty"`
+	// +crossplane:generate:reference:type=Catalog
+	// +kubebuilder:validation:Optional
+	Catalog *string `json:"catalog,omitempty" tf:"catalog,omitempty"`
+
+	// Reference to a Catalog to populate catalog.
+	// +kubebuilder:validation:Optional
+	CatalogRef *v1.Reference `json:"catalogRef,omitempty" tf:"-"`
+
+	// Selector for a Catalog to populate catalog.
+	// +kubebuilder:validation:Optional
+	CatalogSelector *v1.Selector `json:"catalogSelector,omitempty" tf:"-"`
 
 	// - Description of media file
 	// +kubebuilder:validation:Optional
@@ -112,11 +121,6 @@ type MediaParameters struct {
 	// The name of organization to use, optional if defined at provider level. Useful when connected as sysadmin working across different organizations
 	// +kubebuilder:validation:Optional
 	Org *string `json:"org,omitempty" tf:"org,omitempty"`
-
-	// - Default false. Allows to see upload progress. (See note below)
-	// shows upload progress in stdout
-	// +kubebuilder:validation:Optional
-	ShowUploadProgress *bool `json:"showUploadProgress,omitempty" tf:"show_upload_progress,omitempty"`
 
 	// - size in MB for splitting upload size. It can possibly impact upload performance. Default 1MB.
 	// size of upload file piece size in mega bytes

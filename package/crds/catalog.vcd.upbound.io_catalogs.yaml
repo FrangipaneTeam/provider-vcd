@@ -134,9 +134,13 @@ spec:
                   org:
                     description: The name of organization to use, optional if defined
                       at provider level. Useful when connected as sysadmin working
-                      across different organisations The name of organization to use,
-                      optional if defined at provider level. Useful when connected
-                      as sysadmin working across different organizations
+                      across different organizations. When using a catalog shared
+                      from another organization, this field must have the name of
+                      that one, not the current one. If you don't know the name of
+                      the sharing org, and put the current one, an error message will
+                      list the possible names. The name of organization to use, optional
+                      if defined at provider level. Useful when connected as sysadmin
+                      working across different organizations
                     type: string
                   passwordSecretRef:
                     description: An optional password to access the catalog. Only
@@ -374,6 +378,11 @@ spec:
                     type: string
                   id:
                     type: string
+                  isLocal:
+                    description: (v3.8.1+) Indicates if this catalog was created in
+                      the current organization. True if this catalog belongs to the
+                      current organization.
+                    type: boolean
                   isPublished:
                     description: (v3.6+) Indicates if this catalog is shared to all
                       organizations. True if this catalog is published.

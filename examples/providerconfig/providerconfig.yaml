@@ -3,9 +3,11 @@ kind: ProviderConfig
 metadata:
   name: default
 spec:
+  auth_type: integrated
+  url: https://console1.cloudavenue.orange-business.com/api
   credentials:
     source: Secret
     secretRef:
-      name: example-creds
+      name: vcd-creds
       namespace: crossplane-system
       key: credentials

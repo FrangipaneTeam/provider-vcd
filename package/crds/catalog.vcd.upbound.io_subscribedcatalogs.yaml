@@ -382,6 +382,11 @@ spec:
                     type: string
                   id:
                     type: string
+                  isLocal:
+                    description: (v3.8.1+) Indicates if this catalog was created in
+                      the current organization. True if this catalog belongs to the
+                      current organization.
+                    type: boolean
                   isPublished:
                     description: Indicates if this catalog is available for subscription.
                       (Always false) True if this catalog is published. (Always false)

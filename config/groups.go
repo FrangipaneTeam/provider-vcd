@@ -67,6 +67,9 @@ var GroupMap = map[string]GroupKindCalculator{
 	// VM
 	"vcd_vm": ReplaceGroupWords("vm", 0), // Group: vm, Kind: VM
 
+	// Catalog
+	"vcd_catalog": ReplaceGroupWords("catalog", 0), // Group: catalog, Kind: Catalog
+
 	// VAPP
 	"vcd_vapp": ReplaceGroupWords("vapp", 0), // Group: vapp, Kind: VApp
 

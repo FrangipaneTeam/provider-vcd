@@ -4,14 +4,15 @@ metadata:
   annotations:
     meta.upbound.io/example-id: catalog/v1beta1/accesscontrol
   labels:
-    testing.upbound.io/example-name: AC-not-shared
-  name: ac-not-shared
+    testing.upbound.io/example-name: AC-shared
+  name: acshared
 spec:
   forProvider:
     catalogIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: vcd_catalog
-    sharedWithEveryone: false
+        testing.upbound.io/example-name: crossplaneCatalog
+    sharedWithEveryone: true
+    everyoneAccessLevel: "ReadOnly"
 
 ---
 

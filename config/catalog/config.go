@@ -10,7 +10,6 @@ func Configure(p *config.Provider) {
 	// vcd_catalog
 	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog
 	p.AddResourceConfigurator("vcd_catalog", func(r *config.Resource) {
-		r.ShortGroup = "catalog"
 	})
 
 	// vcd_catalog_access_control
@@ -31,15 +30,26 @@ func Configure(p *config.Provider) {
 	// vcd_catalog_media
 	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog_media
 	p.AddResourceConfigurator("vcd_catalog_media", func(r *config.Resource) {
+		// catalog_id
+		r.References["catalog"] = config.Reference{
+			Type: "Catalog",
+		}
+		// temporary workaround for remove show_upload_progress
+		// need to update the terraform provider documentation
+		r.ExternalName.OmittedFields = []string{"show_upload_progress"}
 	})
 
 	// vcd_catalog_vapp_template
 	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/catalog_vapp_template
 	p.AddResourceConfigurator("vcd_catalog_vapp_template", func(r *config.Resource) {
 		// catalog_id
+		// r.UseAsync = true
 		r.References["catalog_id"] = config.Reference{
 			Type: "Catalog",
 		}
+		// temporary workaround for remove show_upload_progress
+		// need to update the terraform provider documentation
+		r.ExternalName.OmittedFields = []string{"show_upload_progress"}
 	})
 
 	// vcd_subscribed_catalog
