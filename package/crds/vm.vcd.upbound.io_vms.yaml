@@ -289,6 +289,9 @@ spec:
                           type: string
                       type: object
                     type: array
+                  name:
+                    description: A name for the VM, unique within the vApp
+                    type: string
                   network:
                     description: A block to define network interface. Multiple can
                       be used.
@@ -490,6 +493,8 @@ spec:
                     description: The name of the VM in vApp Template to use. In cases
                       when vApp template has more than one VM
                     type: string
+                required:
+                - name
                 type: object
               providerConfigRef:
                 default:

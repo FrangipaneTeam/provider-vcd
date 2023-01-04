@@ -47,6 +47,7 @@ func Configure(p *config.Provider) {
 		r.References["catalog_id"] = config.Reference{
 			Type: "Catalog",
 		}
+
 		// temporary workaround for remove show_upload_progress
 		// need to update the terraform provider documentation
 		r.ExternalName.OmittedFields = []string{"show_upload_progress"}

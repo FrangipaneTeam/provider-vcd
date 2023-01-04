@@ -5,17 +5,30 @@ Copyright 2022 Upbound Inc.
 package config
 
 import (
+	"context"
+	"errors"
+	"fmt"
+	"strings"
+
 	"github.com/upbound/upjet/pkg/config"
+)
+
+const (
+	// ErrFmtNoAttribute is the error format for missing attribute in Terraform state.
+	ErrFmtNoAttribute = "cannot find attribute %s in Terraform state"
+	// ErrFmtUnexpectedType is the error format for unexpected type of attribute in Terraform state.
+	ErrFmtUnexpectedType = "unexpected type for attribute %s in Terraform state"
 )
 
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
-	"vcd_catalog":                TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.name }}"),
+	"vcd_catalog":                config.IdentifierFromProvider,
 	"vcd_catalog_access_control": TemplatedStringAsIdentifierWithNoName("{{ .parameters.catalog_id }}"),
 	"vcd_catalog_item":           TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.catalog }}.{{ .parameters.name }}"),
 	"vcd_catalog_media":          TemplatedStringAsIdentifierWithNoName("{{ .parameters.org }}.{{ .parameters.catalog }}.{{ .parameters.name }}"),
-	"vcd_catalog_vapp_template":  TemplatedStringAsIdentifierWithNoName("{{ .setup.configuration.org }}.{{ .parameters.catalog_id }}.{{ .parameters.name }}"),
+	// "vcd_catalog_vapp_template":  TemplatedStringAsIdentifierWithNoName("{{ .setup.configuration.org }}.{{ .parameters.catalog_id }}.{{ .parameters.name }}"),
+	"vcd_catalog_vapp_template": resourceName(),
 
 	"vcd_certificate_library": config.TemplatedStringAsIdentifier("alias", "{{ .parameters.org }}.{{ .external_name }}"),
 
@@ -189,7 +202,7 @@ var ExternalNameConfigs = map[string]config.ExternalName{
 
 	// vcd_vm
 	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vm
-	"vcd_vm": config.TemplatedStringAsIdentifier("name", "{{ .parameters.org }}.{{ .parameters.vdc }}.urn:vcloud:vm:{{ .external_name }}"),
+	"vcd_vm": TemplatedStringAsIdentifierWithNoName("{{ .parameters.org_id }}.{{ .parameters.vdc_id }}.{{ .external_name }}"),
 
 	// vcd_vm_affinity_rule
 	// https://registry.terraform.io/providers/vmware/vcd/latest/docs/resources/vm_affinity_rule
@@ -320,5 +333,25 @@ func ExternalNameConfigured() []string {
 func TemplatedStringAsIdentifierWithNoName(tmpl string) config.ExternalName {
 	e := config.TemplatedStringAsIdentifier("", tmpl)
 	e.DisableNameInitializer = true
+	return e
+}
+
+func resourceName() config.ExternalName {
+	e := config.IdentifierFromProvider
+	e.GetIDFn = func(_ context.Context, externalName string, parameters map[string]interface{}, _ map[string]interface{}) (string, error) {
+		cl, ok := parameters["catalog_id"]
+		if !ok {
+			return "", errors.New("catalog_id cannot be empty")
+		}
+		return fmt.Sprintf("%s:%s", cl.(string), externalName), nil
+	}
+	e.GetExternalNameFn = func(tfstate map[string]interface{}) (string, error) {
+		id, ok := tfstate["id"]
+		if !ok {
+			return "", errors.New("id in tfstate cannot be empty")
+		}
+		w := strings.Split(id.(string), ":")
+		return w[len(w)-1], nil
+	}
 	return e
 }

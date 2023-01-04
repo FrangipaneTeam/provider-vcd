@@ -33,7 +33,7 @@
 ## network
 |Kind|CRD|Tested|
 |---|---|---|
-|Direct|Direct.network.vcd.upbound.io/v1beta1|:white_check_mark:|
+|Direct|Direct.network.vcd.upbound.io/v1beta1|:x:|
 |ExternalNetwork|ExternalNetwork.network.vcd.upbound.io/v1beta1|:x:|
 |ExternalNetworkV2|ExternalNetworkV2.network.vcd.upbound.io/v1beta1|:x:|
 |Isolated|Isolated.network.vcd.upbound.io/v1beta1|:x:|
@@ -126,4 +126,4 @@
 |PlacementPolicy|PlacementPolicy.vm.vcd.upbound.io/v1beta1|:x:|
 |SecurityTag|SecurityTag.vm.vcd.upbound.io/v1beta1|:x:|
 |SizingPolicy|SizingPolicy.vm.vcd.upbound.io/v1beta1|:x:|
-|VM|VM.vm.vcd.upbound.io/v1beta1|:x:|
+|VM|VM.vm.vcd.upbound.io/v1beta1|:white_check_mark:|

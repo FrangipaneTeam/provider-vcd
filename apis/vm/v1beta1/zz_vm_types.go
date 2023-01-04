@@ -344,6 +344,10 @@ type VMParameters struct {
 	// +kubebuilder:validation:Optional
 	MetadataEntry []MetadataEntryParameters `json:"metadataEntry,omitempty" tf:"metadata_entry,omitempty"`
 
+	// A name for the VM, unique within the vApp
+	// +kubebuilder:validation:Required
+	Name *string `json:"name" tf:"name,omitempty"`
+
 	// A block to define network interface. Multiple can be used.
 	// +kubebuilder:validation:Optional
 	Network []NetworkParameters `json:"network,omitempty" tf:"network,omitempty"`

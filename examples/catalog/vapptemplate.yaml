@@ -4,27 +4,14 @@ metadata:
   annotations:
     meta.upbound.io/example-id: catalog/v1beta1/vapptemplate
   labels:
-    testing.upbound.io/example-name: ubuntu-server
-  name: ubuntu-server
+    testing.upbound.io/example-name: alpine
+  name: alpine
 spec:
   forProvider:
     catalogIdSelector:
       matchLabels:
         testing.upbound.io/example-name: crossplaneCatalog
-    name: UbuntuServer
-    ovfUrl: https://raw.githubusercontent.com/canonical/cloud-init/main/doc/sources/ovf/example/ubuntu-server.ovf
-    uploadPieceSize: 10
-    metadataEntry:
-    - isSystem: false
-      key: license
-      type: MetadataStringValue
-      userAccess: READWRITE
-      value: public
-    - isSystem: false
-      key: version
-      type: MetadataStringValue
-      userAccess: READWRITE
-      value: v1
-
+    name: Alpine Linux Appliance
+    ovaPath: /alpine-3.15.6.ova
 ---
 

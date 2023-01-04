@@ -8,16 +8,17 @@ metadata:
   name: testvm
 spec:
   forProvider:
+    name: testvm
     cpus: 2
     memory: 2048
-    name: TestVm
+    powerOn: false
     network:
-    - ipAllocationMode: POOL
-      name: net-datacloud-r
-      type: org
+    - ipAllocationMode: NONE
+      type: none
+      connected: true
     vappTemplateIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: vcd_catalog_vapp_template
+        testing.upbound.io/example-name: alpine
 
 ---
 
