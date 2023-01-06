@@ -7,7 +7,6 @@ cover.out
 .DS_Store
 
 # ignore IDE folders
-.vscode/
 .idea/
 
 examples/providerconfig/secret.yaml

@@ -1,0 +1,42 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Gen docs",
+            "type": "shell",
+            "command": "python3 scripts/generate-docs.py"
+        },
+        {
+            "label": "Gen list resources",
+            "type": "shell",
+            "command": "python3 scripts/generate-list-resources.py"
+        },
+        {
+            "label": "Gen list tested",
+            "type": "shell",
+            "command": "python3 scripts/generate-check-examples.py package/crds/ examples/ > list-tested.md"
+        },
+        {
+            "label": "Reviewable",
+            "type": "shell",
+            "command": "make reviewable"
+        },
+        {
+            "label": "Gen",
+            "type": "shell",
+            "command": "make generate"
+        },
+        {
+            "label": "Run",
+            "type": "shell",
+            "command": "make run"
+        },
+        {
+            "label": "rm zz*",
+            "type": "shell",
+            "command": "find . -iname 'zz_*' -delete"
+        },
+    ]
+}
